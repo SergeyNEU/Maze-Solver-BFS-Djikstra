@@ -1,35 +1,31 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 1, Part B
- * Contains code class and all necessary functions (checkCorrect, checkIncorrect).
- * Implements code class to run a game of Mastermind.
+ * Project 2, Part A
+ * Contains card class and all necessary functions.
+ * Implements card class to run a game of flip.
  */
 
 #include <iostream>
-#include <vector>
-#include <time.h>
 
 #ifndef CARD_H
 #define CARD_H
 
 using namespace std;
 
-class code
+class card
 {
 public:
-    code();
-    code(int n, int m);
-    void randomizeCode();
-    int checkCorrect(const code &guessVector) const;
-    int checkIncorrect(const code &guessVector) const;
-    void resetVector();
-    void addElement(int value);
-    int getElement(int index) const;
-    void printVector();
-    void enterElements();
+    card();
+    void setValue(int setVal);
+    void setSuit(string setSuit);
+    int getValue();
+    string getSuit();
+
+    //An overloaded operator << that prints a response (global).
+    friend ostream& operator << (ostream &out, card &A);
+
 private:
-    int codeLength;
-    int digitRange;
-    vector<int> codeVector;
+    int value;
+    string suit;
 }; // End of code class
 #endif //CODE_H

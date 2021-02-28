@@ -1,7 +1,7 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 1, Part B
- * Function definition for response class.
+ * Function definition for deck class.
  */
 
 #include "deck.h"

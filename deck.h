@@ -1,8 +1,8 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 1, Part B
- * Contains response class and all necessary functions.
- * Implements response class to store the number of correct and incorrect guesses.
+ * Project 2, Part A
+ * Contains deck class and all necessary functions.
+ * Implements deck class to ...
  */
 
 #include <iostream>
