@@ -6,48 +6,49 @@
 
 #include "deck.h"
 
-response::response()
-// Default constructor for response class.
+const int fullDeck = 52;
+
+//not sure whether to do a for loop in the overload or in a separate function (printDeck())
+ostream& operator << (ostream &out, deck&A)
 {
-    correctGuess = 0;
-    incorrectGuess = 0;
+    for(int i = 0; i < fullDeck; i++)
+    {
+        out << &A[i].getSuit() << " of " << &A[i].getValue();
+    }
 }
 
-response::response(int correctG, int incorrectG)
-// Special constructor, meant to instantiate a 'correct' response so future responses could be compared against it.
+void deck::printDeck()
 {
-    correctGuess = correctG;
-    incorrectGuess = incorrectG;
+    for(int i = 0; i < fullDeck; i++)
+    {
+        cout << deck[i].print();
+    }
 }
 
-void response::setCorrectNumbers(const int input) {
-    correctGuess = input;
-}
-void response::setIncorrectNumbers(const int input) {
-    incorrectGuess = input;
-}
-
-int response::getCorrectNumbers() const {
-    return correctGuess;
-}
-
-int response::getIncorrectNumbers() const {
-    return incorrectGuess;
-}
-
-bool operator == (const response &A, const response &B)
-// Checks to see if all members in response A == all members in response B.
+deck::deck()
 {
-
-    if((A.getCorrectNumbers() == B.getCorrectNumbers()) && (A.getIncorrectNumbers() == B.getIncorrectNumbers()))
-        return true;
-    else
-        return false;
+    int faces[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+    string suits[] = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    deck[] = new card[fullDeck];
+    for(int i = 0; i< fullDeck; i++)
+    {
+        card *c = new card();
+        c->setValue(faces[i % 13]);
+        c->setSuit(suits[i / 13]);
+        deck[i] = *c;
+    }
 }
 
-ostream& operator << (ostream &out, response&A)
-// Overloaded operator for cout - prints correct and incorrect numbers.
+void deck::shuffle()
 {
-    out << "Correct Digits:   " << A.getCorrectNumbers() << endl << "Misplaced Digits: " << A.getIncorrectNumbers() << endl;
-    return out;
+    for(int i = 0; i < fullDeck; i++)
+    {
+        int next = (rand() + time(0)) % fullDeck;
+        card hold = deck[i];
+        deck[i] = deck[next];
+        deck[next] = hold;
+    }
 }
+
+
+

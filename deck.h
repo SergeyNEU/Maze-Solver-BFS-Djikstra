@@ -6,32 +6,26 @@
  */
 
 #include <iostream>
-#include <vector>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
+#include "card.h"
 
 #ifndef DECK_H
 #define DECK_H
 
 using namespace std;
 
-class response
+class deck
 {
 public:
-    response();
-    response(int correctG, int incorrectG);
-    void setCorrectNumbers(const int input);
-    void setIncorrectNumbers(const int input);
-    int getCorrectNumbers() const;
-    int getIncorrectNumbers() const;
+    deck();
+    void shuffle();
+    void printDeck();
 
-    //An overloaded operator == that compares responses and returns true if they are equal (global)
-    friend bool operator == (const response &A, const response &B);
-
-    //An overloaded operator << that prints a response (global).
-    friend ostream& operator << (ostream &out, response &A);
+    friend ostream& operator << (ostream &out, deck &A);
 
 private:
-    int correctGuess;
-    int incorrectGuess;
-}; // End of response class
+    card *c;
+};
 #endif //DECK_H
