@@ -100,28 +100,50 @@ void deck::append(card** head_ref, int value, string suit)
     return;
 }
 
-// This function prints contents of
-// linked list starting from head
-void deck::printDeck(card *node)
-{
-    while (node != NULL)
-    {
-        cout<<" Value: "<< node->getValue() << " Suit: " << node->getSuit() << endl;
-        node = node->next;
-    }
-}
-
 ostream& operator<<(ostream &out, deck &A)
 {
-
-    A.printDeck(A.head);
-
+    while (A.head != NULL)
+    {
+        out<<" Value: "<< A.head->getValue() << " Suit: " << A.head->getSuit() << endl;
+        A.head = A.head->next;
+    }
     return out;
 }
 
-void push(card** head_ref, int new_data)
-{
+void deck::shuffle() {
 
+}
+
+
+// A reservoir sampling based function to print a
+// random node from a linked list
+void Node::printRandom(Node *head)
+{
+    // IF list is empty
+    if (head == NULL)
+        return;
+
+    // Use a different seed value so that we don't get
+    // same result each time we run this program
+    srand(time(NULL));
+
+    // Initialize result as first node
+    int result = head->key;
+
+    // Iterate from the (k+1)th element to nth element
+    Node *current = head;
+    int n;
+    for (n = 2; current != NULL; n++)
+    {
+        // change result with probability 1/n
+        if (rand() % n == 0)
+            result = current->key;
+
+        // Move to next node
+        current = current->next;
+    }
+
+    cout<<"Randomly selected key is \n"<< result;
 }
 
 
@@ -129,9 +151,6 @@ void push(card** head_ref, int new_data)
 
 /*
 ostream
-
-
-
 void deck::printDeck()
 {
     for(int i = 0; i < fullDeck; i++)
@@ -139,7 +158,6 @@ void deck::printDeck()
         cout << deck[i].print();
     }
 }
-
 void deck::shuffle()
 {
     for(int i = 0; i < fullDeck; i++)
@@ -151,4 +169,3 @@ void deck::shuffle()
     }
 }
 */
-
