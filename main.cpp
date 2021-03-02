@@ -8,7 +8,12 @@ using namespace std;
 
 int main() {
     deck *d = new deck();
-    cout << d;
+
+
+    //cout << d;
+    /*cout << d;
     d->shuffle();
-    cout << d;
+    cout << d;*/
+
+    return 0;
 }
