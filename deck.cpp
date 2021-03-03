@@ -90,11 +90,12 @@ void deck::shuffle()
     }
 
     for (int i = fullDeck - 1; i > 0; i--)
-    // Picks a random number
+    // Picks a random number.
     {
         num = rand() % i + 1;
         if (num != i)
-        //Swaps cards.
+        // If the random number doesn't equal to the iteration that i is on, swaps cards..
+        // It won't swap the same card with itself.
         {
             card *p = cardList[i];
             cardList[i] = cardList[num];
@@ -106,7 +107,7 @@ void deck::shuffle()
     deleteList(&head);
 
     for(int i = 0; i< fullDeck; i++)
-    //Appends an entire new list from the randomized cardList array.
+    // Appends an entire new list from the randomized cardList array.
     {
         append(&head, cardList[i]->getValue(), cardList[i]->getSuit());
     }
