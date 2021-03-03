@@ -14,13 +14,15 @@ using namespace std;
 
 int main()
 {
-
+    // Creates a new deck object.
     deck *d = new deck();
+
+    // Prints out the unshuffled deck.
     cout << *d;
 
-    cout << "Shuffled Deck: " << endl;
+    // Shuffles the deck and prints out a the newly shuffled deck.
     d->shuffle();
-
+    cout << "Shuffled Deck: " << endl;
     cout << *d;
 
     return 0;
