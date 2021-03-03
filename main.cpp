@@ -1,4 +1,9 @@
-
+/*
+ * By: Sergey Petrushkevich & Luke Ackerman
+ * Project 2, Part A
+ * Main file for the card and deck classes
+ * Creates a new deck, outputs it, then shuffles it
+ */
 
 #include <iostream>
 #include "card.h"

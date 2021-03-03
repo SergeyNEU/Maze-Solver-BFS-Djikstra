@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 1, Part B
+ * Project 2, Part A
  * Function definition for deck class.
  */
 

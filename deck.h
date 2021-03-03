@@ -2,7 +2,7 @@
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 2, Part A
  * Contains deck class and all necessary functions.
- * Implements deck class to ...
+ * Implements deck class to run a game of flip
  */
 
 #include <iostream>
