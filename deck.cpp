@@ -91,7 +91,7 @@ void deck::shuffle()
         }
     }
 
-    for (int i = 0; 9 < fullDeck; i++)
+    for (int i = 0; i < fullDeck; i++)
     {
         cout << cardList[i]->getValue() << cardList[i]->getSuit() << endl;
     }
@@ -106,4 +106,3 @@ void deck::printDeck(card *node)
         printDeck(node->next);
     }
 }
-
