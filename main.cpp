@@ -12,7 +12,9 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
+
     deck *d = new deck();
     cout << *d;
 
@@ -20,7 +22,6 @@ int main() {
     d->shuffle();
 
     cout << *d;
-
 
     return 0;
 }

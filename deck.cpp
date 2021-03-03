@@ -9,6 +9,8 @@
 #include "deck.h"
 
 deck::deck()
+// Initializes the deck. Ace = 1, Jack = 11, Queen = 12, King = 13
+// Appends a sorted list to an empty linked list.
 {
     int faces[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
     string suits[] = {"Clubs", "Diamonds", "Hearts", "Spades"};
@@ -20,89 +22,90 @@ deck::deck()
 
 }
 
-/* Given a reference (pointer to pointer) to the head
-of a list and an int, appends a new node at the end */
-void deck::append(card** head_ref, int value, string suit)
+void deck::append(card** head, int value, string suit)
+// Given head reference to a card linked note, appends a new node to the end of the list with specific value and suit.
 {
-    /* 1. allocate node */
-    card* new_node = new card();
 
-    card *last = *head_ref; /* used in step 5*/
+    card* new_card = new card();
+    card *last = *head;
 
-    /* 2. put in the data */
-    new_node->setValue(value);
-    new_node->setSuit(suit);
+    // Allocates data to the new node.
+    new_card->setValue(value);
+    new_card->setSuit(suit);
 
-    /* 3. This new node is going to be
-    the last node, so make next of
-    it as NULL*/
-    new_node->next = NULL;
+    // Makes the new node be the last node, hence pointing to NULL.
+    new_card->next = NULL;
 
-    /* 4. If the Linked List is empty,
-    then make the new node as head */
-    if (*head_ref == NULL)
+    // If the linked list is empty, makes the new node the head.
+    if (*head == NULL)
     {
-        *head_ref = new_node;
+        *head = new_card;
         return;
     }
 
-    /* 5. Else traverse till the last node */
+    // While the pointer doesn't point to the end of the list, keep on going.
     while (last->next != NULL)
         last = last->next;
 
-    /* 6. Change the next of last node */
-    last->next = new_node;
+    // The previous last node now points to the new last node.
+    last->next = new_card;
 
     return;
 }
 
 ostream& operator << (ostream &out, deck &A)
+// Takes a deck object and outputs its contents.
 {
+    //This function modifies original header position, so the original header position is stored.
     card *header = A.head;
+
+    // While the pointer doesn't point to the end of the list, keep on going.
     while (A.head != NULL)
     {
         out << " Value: " << left << setw(5) << A.head->getValue() << " Suit: " << setw(5) << A.head->getSuit() << endl;
         A.head = A.head->next;
     }
+
+    // The original header position is assigned back to the header node. The header node now points to the beginning
+    // of the list.
     A.head = header;
 
     return out;
 }
 
 void deck::shuffle()
+// Using srand, selects
 {
+    int num;
+    srand(time(nullptr));
+
     card **cardList = new card *[fullDeck];
     cardList[0] = this->head;
 
-    srand(time(nullptr));
-
-    int num;
-
     for (int i = 1; i < fullDeck; i++)
+    //Populates the array with the deck
     {
         cardList[i] = cardList[i - 1]->next;
     }
 
     for (int i = fullDeck - 1; i > 0; i--)
+    // Picks a random number
     {
         num = rand() % i + 1;
-        if (num != i) {
+        if (num != i)
+        //Swaps cards.
+        {
             card *p = cardList[i];
             cardList[i] = cardList[num];
             cardList[num] = p;
         }
     }
-/*
-    for (int i = 0; i < fullDeck; i++)
-    {
-        cout << cardList[i]->getValue() << cardList[i]->getSuit() << endl;
-    }
-    */
 
+    // Clears the entire list in preparation of population.
     deleteList(&head);
 
-
     for(int i = 0; i< fullDeck; i++)
+    //Appends an entire new list from the randomized cardList array.
     {
         append(&head, cardList[i]->getValue(), cardList[i]->getSuit());
     }
@@ -110,6 +113,7 @@ void deck::shuffle()
 }
 
 void deck::printDeck(card *node)
+// Goes through the entire deck, printing every linked list node.
 {
     for(int i = 0; i < fullDeck-1; i++)
     {
@@ -119,21 +123,25 @@ void deck::printDeck(card *node)
 }
 
 
-/* Function to delete the entire linked list */
-void deck::deleteList(card** head_ref)
+
+void deck::deleteList(card** head)
+// Deletes the entire list.
 {
 
-    /* deref head_ref to get the real head */
-    card* current = *head_ref;
-    card* next = NULL;
+    // Makes a new node called traversing that traverses the linked list.
+    card *traversing = *head;
 
-    while (current != NULL)
+    // Node next points to nothing originally.
+    card *next = NULL;
+
+    while (traversing != NULL)
+    // Next pointer points to the location of next node and makes traversing equal to it.
     {
-        next = current->next;
-        current = next;
+
+        next = traversing->next;
+        traversing = next;
     }
 
-    /* deref head_ref to affect the real head back
-        in the caller. */
-    *head_ref = NULL;
+    // Makes the header point back to NULL, new list is ready to be formed!
+    *head = NULL;
 }

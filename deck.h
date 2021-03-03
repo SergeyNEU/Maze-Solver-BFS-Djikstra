@@ -30,10 +30,6 @@ public:
     friend ostream& operator << (ostream &out, deck &A);
 
     card* next;
-    /* Start with the empty list */
     card* head = NULL;
-
-
-
 };
 #endif //DECK_H
