@@ -90,10 +90,16 @@ void deck::shuffle()
             cardList[num] = p;
         }
     }
-
+/*
     for (int i = 0; i < fullDeck; i++)
     {
         cout << cardList[i]->getValue() << cardList[i]->getSuit() << endl;
+    }
+    */
+    cout << "Shuffled Deck: " << endl;
+    for(int i = 0; i< fullDeck; i++)
+    {
+        append(&head, cardList[i]->getValue(), cardList[i]->getSuit());
     }
 
 }
