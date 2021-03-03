@@ -58,11 +58,13 @@ void deck::append(card** head_ref, int value, string suit)
 
 ostream& operator << (ostream &out, deck &A)
 {
+    card *header = A.head;
     while (A.head != NULL)
     {
         out << " Value: " << A.head->getValue() << " Suit: " << A.head->getSuit() << endl;
         A.head = A.head->next;
     }
+    A.head = header;
 
     return out;
 }
