@@ -24,7 +24,7 @@ public:
     //An overloaded operator << that prints a response (global).
     friend ostream& operator << (ostream &out, card &A);
 
-
+    //creates a card node with a next pointer
     card *next;
 
 private:

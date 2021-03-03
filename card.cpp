@@ -21,18 +21,26 @@ card::card()
     suit = "default";
 }
 
-string card::getSuit() {
+string card::getSuit()
+// Returns the suit value of a card
+{
     return suit;
 }
 
-int card::getValue() {
+int card::getValue()
+// Returns the number value of a card
+{
     return value;
 }
 
-void card::setValue(int setVal) {
+void card::setValue(int setVal)
+// Sets the number value of a card
+{
     value = setVal;
 }
 
-void card::setSuit(string setSuit) {
+void card::setSuit(string setSuit)
+// Sets the suit value of a card
+{
     suit = setSuit;
 }
