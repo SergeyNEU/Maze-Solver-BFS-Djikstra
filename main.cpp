@@ -10,7 +10,10 @@ using namespace std;
 int main() {
     deck *d = new deck();
     cout << *d;
+
+    cout << "Shuffled Deck: " << endl;
     d->shuffle();
+
     cout << *d;
 
 

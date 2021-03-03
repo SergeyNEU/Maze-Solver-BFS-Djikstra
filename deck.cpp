@@ -61,7 +61,7 @@ ostream& operator << (ostream &out, deck &A)
     card *header = A.head;
     while (A.head != NULL)
     {
-        out << " Value: " << A.head->getValue() << " Suit: " << A.head->getSuit() << endl;
+        out << " Value: " << left << setw(5) << A.head->getValue() << " Suit: " << setw(5) << A.head->getSuit() << endl;
         A.head = A.head->next;
     }
     A.head = header;
@@ -74,7 +74,9 @@ void deck::shuffle()
     card **cardList = new card *[fullDeck];
     cardList[0] = this->head;
 
-    srand(time(0));
+    srand(time(nullptr));
+
+    int num;
 
     for (int i = 1; i < fullDeck; i++)
     {
@@ -83,7 +85,7 @@ void deck::shuffle()
 
     for (int i = fullDeck - 1; i > 0; i--)
     {
-        int num = rand() % i + 1;
+        num = rand() % i + 1;
         if (num != i) {
             card *p = cardList[i];
             cardList[i] = cardList[num];
@@ -96,7 +98,10 @@ void deck::shuffle()
         cout << cardList[i]->getValue() << cardList[i]->getSuit() << endl;
     }
     */
-    cout << "Shuffled Deck: " << endl;
+
+    deleteList(&head);
+
+
     for(int i = 0; i< fullDeck; i++)
     {
         append(&head, cardList[i]->getValue(), cardList[i]->getSuit());
@@ -111,4 +116,24 @@ void deck::printDeck(card *node)
         cout << *node;
         printDeck(node->next);
     }
+}
+
+
+/* Function to delete the entire linked list */
+void deck::deleteList(card** head_ref)
+{
+
+    /* deref head_ref to get the real head */
+    card* current = *head_ref;
+    card* next = NULL;
+
+    while (current != NULL)
+    {
+        next = current->next;
+        current = next;
+    }
+
+    /* deref head_ref to affect the real head back
+        in the caller. */
+    *head_ref = NULL;
 }

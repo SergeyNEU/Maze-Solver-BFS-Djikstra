@@ -25,11 +25,15 @@ public:
     void shuffle();
     void append(card** head_ref, int value, string suit);
     void printDeck(card *node);
+    void deleteList(card** head_ref);
 
     friend ostream& operator << (ostream &out, deck &A);
 
     card* next;
     /* Start with the empty list */
     card* head = NULL;
+
+
+
 };
 #endif //DECK_H
