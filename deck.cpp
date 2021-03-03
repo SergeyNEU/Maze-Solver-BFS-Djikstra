@@ -74,7 +74,8 @@ ostream& operator << (ostream &out, deck &A)
 }
 
 void deck::shuffle()
-// Using srand, selects
+// Using srand, shuffles the cards by randomly swapping cards in an array,
+// then turns that array into a deck
 {
     int num;
     srand(time(nullptr));
