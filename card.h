@@ -15,7 +15,13 @@ using namespace std;
 class card
 {
 public:
+
     card();
+
+    // Copy constructor
+    card(const card &card1);
+
+
     void setValue(int setVal);
     void setSuit(string setSuit);
     int getValue();
@@ -23,6 +29,8 @@ public:
 
     //An overloaded operator << that prints a response (global).
     friend ostream& operator << (ostream &out, card &A);
+
+    card &operator = (const card &cardEqual);
 
     //creates a card node with a next pointer
     card *next;

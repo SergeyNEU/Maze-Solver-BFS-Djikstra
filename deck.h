@@ -23,13 +23,15 @@ private:
 public:
     deck();
     void shuffle();
-    void append(card** head_ref, int value, string suit);
+    void append(int value, string suit);
     void printDeck(card *node);
-    void deleteList(card** head_ref);
+    void deleteList();
+    void replace(card *input);
+
+    card deal();
 
     friend ostream& operator << (ostream &out, deck &A);
 
-    card* next;
     card* head = NULL;
 };
 #endif //DECK_H

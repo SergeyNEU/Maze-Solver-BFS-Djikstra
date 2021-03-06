@@ -14,11 +14,30 @@ ostream& operator << (ostream &out, card&A)
     return out;
 }
 
+card &card::operator= (const card &cardEqual)
+{
+    // self-assignment check
+    if (this == &cardEqual)
+        return *this;
+
+    value = cardEqual.value;
+    suit = cardEqual.value;
+    //next = cardEqual.next;
+
+    // return the existing object so we can chain this operator
+    return *this;
+}
+
 card::card()
 // Initializes each card object with default, trivial values.
 {
     value = 0;
     suit = "default";
+}
+
+card::card(const card &card1) {
+    value = card1.value;
+    suit = card1.suit;
 }
 
 string card::getSuit()

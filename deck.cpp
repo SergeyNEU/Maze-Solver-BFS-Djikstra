@@ -17,17 +17,17 @@ deck::deck()
 
     for(int i = 0; i< fullDeck; i++)
     {
-        append(&head, faces[i % 13], suits[i / 13]);
+        append(faces[i % 13], suits[i / 13]);
     }
 
 }
 
-void deck::append(card** head, int value, string suit)
+void deck::append(int value, string suit)
 // Given head reference to a card linked note, appends a new node to the end of the list with specific value and suit.
 {
 
     card* new_card = new card();
-    card *last = *head;
+    card *last = head;
 
     // Allocates data to the new node.
     new_card->setValue(value);
@@ -37,9 +37,9 @@ void deck::append(card** head, int value, string suit)
     new_card->next = NULL;
 
     // If the linked list is empty, makes the new node the head.
-    if (*head == NULL)
+    if (head == NULL)
     {
-        *head = new_card;
+        head = new_card;
         return;
     }
 
@@ -49,8 +49,6 @@ void deck::append(card** head, int value, string suit)
 
     // The previous last node now points to the new last node.
     last->next = new_card;
-
-    return;
 }
 
 ostream& operator << (ostream &out, deck &A)
@@ -104,12 +102,12 @@ void deck::shuffle()
     }
 
     // Clears the entire list in preparation of population.
-    deleteList(&head);
+    deleteList();
 
     for(int i = 0; i< fullDeck; i++)
     // Appends an entire new list from the randomized cardList array.
     {
-        append(&head, cardList[i]->getValue(), cardList[i]->getSuit());
+        append(cardList[i]->getValue(), cardList[i]->getSuit());
     }
 
 }
@@ -117,21 +115,18 @@ void deck::shuffle()
 void deck::printDeck(card *node)
 // Goes through the entire deck, printing every linked list node.
 {
-    for(int i = 0; i < fullDeck-1; i++)
-    {
+    while(node->next != NULL){
         cout << *node;
         printDeck(node->next);
     }
 }
 
-
-
-void deck::deleteList(card** head)
+void deck::deleteList()
 // Deletes the entire list.
 {
 
     // Makes a new node called traversing that traverses the linked list.
-    card *traversing = *head;
+    card *traversing = head;
 
     // Node next points to nothing originally.
     card *next = NULL;
@@ -145,5 +140,40 @@ void deck::deleteList(card** head)
     }
 
     // Makes the header point back to NULL, new list is ready to be formed!
-    *head = NULL;
+    head = NULL;
+}
+
+card deck::deal() {
+
+    card *temp = head;
+    //first check if firstNode is NULL or last node.
+    if(temp == NULL)
+        return *temp;
+
+    if(temp->next == NULL)
+    {
+        delete head;
+        head = NULL;
+        return *temp->next;
+    }
+
+    card* currentCard = head;
+    while (currentCard->next && currentCard->next->next != NULL)
+    {
+        currentCard = currentCard->next;
+    }
+
+    card *memory = currentCard->next;
+
+    delete currentCard->next;
+    currentCard->next = NULL;
+
+    return *memory;
+}
+
+void deck::replace(card *input) {
+// Replace takes a card from a certain position specified by USER. It removes the card in the NEW deck and puts it in the MASTER deck.
+    {
+
+    }
 }
