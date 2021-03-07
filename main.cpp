@@ -8,12 +8,14 @@
 #include <iostream>
 #include "card.h"
 #include "deck.h"
+#include "playFlip.h"
 #include <list>
 
 using namespace std;
 
 int main()
 {
+    /*
     //We create an original or MASTER deck of cards
     deck *deckMASTER = new deck();
 
@@ -70,7 +72,9 @@ int main()
     //
 
     //We print out the top 24 cards.
+    */
 
+    playFlip();
 
     return 0;
 }

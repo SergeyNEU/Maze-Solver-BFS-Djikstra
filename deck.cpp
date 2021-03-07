@@ -146,8 +146,7 @@ void deck::deleteList()
 card deck::deal() {
 
     card *temp = head;
-    //first check if firstNode is NULL or last node.
-    if(temp == NULL)
+    //first check if firstNode is NULL or last node    if(temp == NULL)
         return *temp;
 
     if(temp->next == NULL)
