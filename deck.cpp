@@ -145,29 +145,29 @@ void deck::deleteList()
 
 card deck::deal() {
 
+
     card *temp = head;
-    //first check if firstNode is NULL or last node    if(temp == NULL)
-        return *temp;
+    card *t;
+    card *mem;
 
-    if(temp->next == NULL)
+    if(head->next==NULL)
     {
-        delete head;
-        head = NULL;
-        return *temp->next;
+        free(head);
+        head=NULL;
     }
-
-    card* currentCard = head;
-    while (currentCard->next && currentCard->next->next != NULL)
+    else
     {
-        currentCard = currentCard->next;
+        while(temp->next != NULL)
+        {
+            t=temp;
+            temp=temp->next;
+        }
+        //cout << "value " << t->next->getValue() << "suit "<< t->next->getSuit() << endl;
+        mem = t->next;
+        free(t->next);
+        t->next=NULL;
     }
-
-    card *memory = currentCard->next;
-
-    delete currentCard->next;
-    currentCard->next = NULL;
-
-    return *memory;
+    return *mem;
 }
 
 void deck::replace(card *input) {

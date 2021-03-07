@@ -19,17 +19,24 @@ void playFlip()
     //We create an original or MASTER deck of cards
     deck *deckMASTER = new deck();
 
+    // Prints out the shuffled deck.
+    cout << endl <<"UNSHUFFLED MASTER DECK" << endl;
+    cout << *deckMASTER;
+
     //We shuffle them 3 times.
     deckMASTER->shuffle();
     deckMASTER->shuffle();
     deckMASTER->shuffle();
 
+    // Prints out the shuffled deck.
+    cout << endl <<"UPDATED MASTER DECK" << endl;
+    cout << *deckMASTER;
+
     //We create a NEW deck, that will contain 24 cards.
     deck *deckNEW = new deck();
 
-    // Prints out the unshuffled deck.
-    cout << "MASTER DECK" << endl;
-    cout << *deckMASTER;
+    //Clears the pre-programmed 52 card deck list.
+    deckNEW->deleteList();
 
     card temp;
 
@@ -39,16 +46,12 @@ void playFlip()
 
         // Adds the removed card to the NEW deck.
         deckNEW->append(temp.getValue(), temp.getSuit());
+        //cout << "value: " << temp.getValue() << "suit: " << temp.getSuit() << endl;
     }
 
-    //Clears the pre-programmed 52 card deck list.
-    deckNEW->deleteList();
 
-    // Prints out the unshuffled deck.
-    cout << "UPDATED MASTER DECK" << endl;
-    cout << *deckMASTER;
 
-    cout << endl << "NEW DECK" << endl;
+    cout << endl << "NEW DECK" << endl ;
     cout << *deckNEW;
 
     cout << "24 cards have been selected from a deck shuffled three times." << endl;

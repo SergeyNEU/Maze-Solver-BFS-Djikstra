@@ -17,11 +17,11 @@ ostream& operator << (ostream &out, card&A)
 card &card::operator= (const card &cardEqual)
 {
     // self-assignment check
-    if (this == &cardEqual)
-        return *this;
+    //if (this == &cardEqual)
+    //    return *this;
 
     value = cardEqual.value;
-    suit = cardEqual.value;
+    suit = cardEqual.suit;
     //next = cardEqual.next;
 
     // return the existing object so we can chain this operator
