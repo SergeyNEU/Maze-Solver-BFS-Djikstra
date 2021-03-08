@@ -46,7 +46,6 @@ void playFlip()
 
         // Adds the removed card to the NEW deck.
         deckNEW->append(temp.getValue(), temp.getSuit());
-        //cout << "value: " << temp.getValue() << "suit: " << temp.getSuit() << endl;
     }
 
 
@@ -67,50 +66,55 @@ void playFlip()
     int input = 1;
     int i = 0;
 
+    card dealtCard;
+
     while(input == 1)
     {
-        cout << "Your card is: " << endl;
-        cout << *deckNEW->head << endl;
 
-        if(deckNEW->head->getValue() == 1)
+        dealtCard = deckNEW->deal();
+
+        cout << "Your card is: " << endl;
+        cout << dealtCard << endl;
+
+        if(dealtCard.getValue() == 1)
         {
             currentPoints = currentPoints + 10;
             cout << "Ace! +10 points!" << endl;
         }
 
-        if(deckNEW->head->getValue() == 11 ||
-            deckNEW->head->getValue() == 12 ||
-            deckNEW->head->getValue() == 13)
+        if(dealtCard.getValue() == 11 ||
+            dealtCard.getValue() == 12 ||
+            dealtCard.getValue() == 13)
         {
             currentPoints = currentPoints + 5;
             cout << "Face card! +5 points!" << endl;
         }
 
-        if(deckNEW->head->getValue() == 7)
+        if(dealtCard.getValue() == 7)
         {
             currentPoints = currentPoints / 2;
             cout << "Seven! Your points have been split in half!" << endl;
         }
 
-        if(deckNEW->head->getValue() == 2 ||
-                deckNEW->head->getValue() == 3 ||
-                deckNEW->head->getValue() == 4 ||
-                deckNEW->head->getValue() == 5 ||
-                deckNEW->head->getValue() == 6)
+        if(dealtCard.getValue() == 2 ||
+                dealtCard.getValue() == 3 ||
+                dealtCard.getValue() == 4 ||
+                dealtCard.getValue() == 5 ||
+                dealtCard.getValue() == 6)
         {
             currentPoints = 0;
             cout << "Oh no! Zero points!" << endl;
         }
 
-        if(deckNEW->head->getSuit() == "Hearts")
+        if(dealtCard.getSuit() == "Hearts")
         {
             currentPoints = currentPoints + 1;
             cout << "Heart bonus! +1 point!" << endl;
         }
 
-        if(deckNEW->head->getValue() == 8 ||
-                deckNEW->head->getValue() == 9 ||
-                deckNEW->head->getValue() == 10)
+        if(dealtCard.getValue() == 8 ||
+                dealtCard.getValue() == 9 ||
+                dealtCard.getValue() == 10)
         {
             cout << "No effect on your points!" << endl;
         }
@@ -127,8 +131,9 @@ void playFlip()
             cout << "------------------------------" << endl;
         }
 
-        deckNEW->head = deckNEW->head->next;
         i++;
+
+        cout << endl << "Cards Remaining: " << endl <<*deckNEW;
 
         cout << "Enter: 1 to Draw / 2 to End Game" << endl;
         cin >> input;

@@ -162,7 +162,6 @@ card deck::deal() {
             t=temp;
             temp=temp->next;
         }
-        //cout << "value " << t->next->getValue() << "suit "<< t->next->getSuit() << endl;
         mem = t->next;
         free(t->next);
         t->next=NULL;
