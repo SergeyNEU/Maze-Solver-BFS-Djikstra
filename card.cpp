@@ -1,13 +1,13 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part A
+ * Project 2, Part B
  * Function definition for card class.
  */
 
 #include "card.h"
 
 ostream& operator << (ostream &out, card&A)
-// Overloaded operator for cout - prints value and suit.
+// Overloaded assignment operator for cout - prints value and suit.
 {
     out << "Value:   " << A.getValue() << endl;
     out << "Suit:    " << A.getSuit() << endl;
@@ -16,15 +16,11 @@ ostream& operator << (ostream &out, card&A)
 
 card &card::operator= (const card &cardEqual)
 {
-    // self-assignment check
-    //if (this == &cardEqual)
-    //    return *this;
-
+    // Copies all contents of one card to another.
     value = cardEqual.value;
     suit = cardEqual.suit;
-    next = cardEqual.next;
 
-    // return the existing object so we can chain this operator
+    // Return the existing object so this function can be chained.
     return *this;
 }
 
@@ -35,7 +31,9 @@ card::card()
     suit = "default";
 }
 
-card::card(const card &card1) {
+card::card(const card &card1)
+// Copy constructor.
+{
     value = card1.value;
     suit = card1.suit;
 }
