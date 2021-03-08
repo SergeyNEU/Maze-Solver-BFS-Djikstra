@@ -77,6 +77,7 @@ void playFlip()
             currentPoints = currentPoints + 10;
             cout << "Ace! +10 points!" << endl;
         }
+
         if(deckNEW->head->getValue() == 11 ||
             deckNEW->head->getValue() == 12 ||
             deckNEW->head->getValue() == 13)
@@ -84,11 +85,13 @@ void playFlip()
             currentPoints = currentPoints + 5;
             cout << "Face card! +5 points!" << endl;
         }
+
         if(deckNEW->head->getValue() == 7)
         {
             currentPoints = currentPoints / 2;
             cout << "Seven! Your points have been split in half!" << endl;
         }
+
         if(deckNEW->head->getValue() == 2 ||
                 deckNEW->head->getValue() == 3 ||
                 deckNEW->head->getValue() == 4 ||
@@ -98,15 +101,32 @@ void playFlip()
             currentPoints = 0;
             cout << "Oh no! Zero points!" << endl;
         }
+
         if(deckNEW->head->getSuit() == "Hearts")
         {
             currentPoints = currentPoints + 1;
             cout << "Heart bonus! +1 point!" << endl;
         }
 
-        cout << "------------------------------" << endl;
-        cout << "--- You now have " << currentPoints << " points. --- " << endl;
-        cout << "------------------------------" << endl;
+        if(deckNEW->head->getValue() == 8 ||
+                deckNEW->head->getValue() == 9 ||
+                deckNEW->head->getValue() == 10)
+        {
+            cout << "No effect on your points!" << endl;
+        }
+
+        if (currentPoints == 1)
+        {
+            cout << "------------------------------" << endl;
+            cout << "--- You now have " << currentPoints << " point. --- " << endl;
+            cout << "------------------------------" << endl;
+        }
+        else {
+            cout << "------------------------------" << endl;
+            cout << "--- You now have " << currentPoints << " points. --- " << endl;
+            cout << "------------------------------" << endl;
+        }
+
         deckNEW->head = deckNEW->head->next;
         i++;
 
@@ -121,7 +141,13 @@ void playFlip()
 
     if (input == 2)
     {
-        cout << "You have ended the game with " << currentPoints << " points!" << endl;
+        if (currentPoints == 1)
+        {
+            cout << "You have ended the game with " << currentPoints << " point!" << endl;
+        }
+        else {
+            cout << "You have ended the game with " << currentPoints << " points!" << endl;
+        }
     }
 }
 
