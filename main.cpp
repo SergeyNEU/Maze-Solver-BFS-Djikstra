@@ -54,13 +54,6 @@ int main()
     cout << "We play a game blah blah... 1 card gets chosen.. now it gets replaced..." << endl;
 
 
-
-
-
-
-
-
-
     //We create an original or MASTER deck of cards
     //We shuffle them 3 times.
     //We create a NEW deck, that will contain 24 cards.
@@ -75,6 +68,8 @@ int main()
     */
 
     playFlip();
+    deck *d = new deck();
+    d->~deck();
 
     return 0;
 }

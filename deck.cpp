@@ -22,6 +22,19 @@ deck::deck()
 
 }
 
+deck::~deck()
+//
+{
+    this->head = head;
+    card* next;
+
+    while (head != NULL) {
+        next = head->next;
+        delete head;
+        head = next;
+    }
+}
+
 void deck::append(int value, string suit)
 // Given head reference to a card linked note, appends a new node to the end of the list with specific value and suit.
 {

@@ -22,6 +22,7 @@ private:
     int fullDeck = 52;
 public:
     deck();
+    ~deck();
     void shuffle();
     void append(int value, string suit);
     void printDeck(card *node);
