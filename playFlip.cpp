@@ -63,8 +63,8 @@ void playFlip()
 
     //game start
     cout << "The deck has now been shuffled, good luck!" << endl;
-    cout << "First card: " << deckNEW->head << endl;
-    cout << "Second card: " << deckNEW->head->next << endl;
+    cout << "First card: " << *deckNEW->head << endl;
+    cout << "Second card: " << *deckNEW->head->next << endl;
 
     int input = 1;
 
