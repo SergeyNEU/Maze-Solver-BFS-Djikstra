@@ -141,7 +141,7 @@ void playFlip()
         i++;
         if(i == 24)
         {
-            input == 2;
+            input = 2;
             break;
         }
 
@@ -169,7 +169,7 @@ void playFlip()
         }
     }
 
-   // deckMASTER->~deck();
-   // deckNEW->~deck();
+    deckMASTER->~deck();
+    deckNEW->~deck();
 }
 

@@ -25,14 +25,18 @@ deck::deck()
 deck::~deck()
 // Destructor of the deck class. De-allocates the list of cards.
 {
-    this->head = head;
-    card* next;
+    card* destructor = head;
 
-    while (head != NULL) {
-        next = head->next;
-        delete head;
-        head = next;
+    //Goes through the list, starting from the head and deletes every node.
+    while( destructor != 0 )
+    {
+        card* next = destructor->next;
+        delete destructor;
+        destructor = next;
     }
+
+    // Once all nodes are deleted, sets head memory address to NULL.
+    head = NULL;
 }
 
 void deck::append(int value, string suit)
