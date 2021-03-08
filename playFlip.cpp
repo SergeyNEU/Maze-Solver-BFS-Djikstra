@@ -63,12 +63,11 @@ void playFlip()
 
     //game start
     cout << "The deck has now been shuffled, good luck!" << endl;
-    cout << "First card: " << *deckNEW->head << endl;
-    cout << "Second card: " << *deckNEW->head->next << endl;
 
     int input = 1;
+    int i = 0;
 
-    while(input == 1 && deckNEW->head != NULL)
+    while(input == 1)
     {
         cout << "Your card is " << *deckNEW->head << endl;
 
@@ -77,7 +76,9 @@ void playFlip()
             currentPoints = currentPoints + 10;
             cout << "Ace! +10 points!" << endl;
         }
-        if(deckNEW->head->getValue() == 11 || 12 || 13)
+        if(deckNEW->head->getValue() == 11 ||
+            deckNEW->head->getValue() == 12 ||
+            deckNEW->head->getValue() == 13)
         {
             currentPoints = currentPoints + 5;
             cout << "Face card! +5 points!" << endl;
@@ -87,7 +88,11 @@ void playFlip()
             currentPoints = currentPoints / 2;
             cout << "Seven! Your points have been split in half!" << endl;
         }
-        if(deckNEW->head->getValue() == 2 || 3 || 4 || 5 || 6)
+        if(deckNEW->head->getValue() == 2 ||
+                deckNEW->head->getValue() == 3 ||
+                deckNEW->head->getValue() == 4 ||
+                deckNEW->head->getValue() == 5 ||
+                deckNEW->head->getValue() == 6)
         {
             currentPoints = 0;
             cout << "Oh no! Zero points!" << endl;
@@ -100,20 +105,20 @@ void playFlip()
 
         cout << "You now have " << currentPoints << " points!" << endl;
         deckNEW->head = deckNEW->head->next;
+        i++;
 
         cout << "Enter 1 again to draw your next card!" << endl;
         cin >> input;
+
+        if(i == 24)
+        {
+            input = 2;
+        }
     }
 
-    while(input =! 1)
+    if (input == 2)
     {
-        cout << "Please input 1 to draw the next card" << endl;
-        cin >> input;
-    }
-
-    if(deckNEW->head == NULL)
-    {
-        cout << "Thanks for playing! Your final score is " << currentPoints << " points!" << endl;
+        cout << "You have ended the game with " << currentPoints << " points!" << endl;
     }
 }
 
