@@ -168,5 +168,8 @@ void playFlip()
             cout << "----------------------------------------------" << endl;
         }
     }
+
+   // deckMASTER->~deck();
+   // deckNEW->~deck();
 }
 
