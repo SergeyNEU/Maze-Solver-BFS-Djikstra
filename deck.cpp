@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part A
+ * Project 2, Part B
  * Function definition for deck class.
  */
 
@@ -23,7 +23,7 @@ deck::deck()
 }
 
 deck::~deck()
-//
+// Destructor of the deck class. De-allocates the list of cards.
 {
     this->head = head;
     card* next;
@@ -67,7 +67,7 @@ void deck::append(int value, string suit)
 ostream& operator << (ostream &out, deck &A)
 // Takes a deck object and outputs its contents.
 {
-    //This function modifies original header position, so the original header position is stored.
+    // This function modifies original header position, so the original header position is stored.
     card *header = A.head;
 
     // While the pointer doesn't point to the end of the list, keep on going.
@@ -124,16 +124,7 @@ void deck::shuffle()
     }
 
 }
-/*
-void deck::printDeck(card *node)
-// Goes through the entire deck, printing every linked list node.
-{
-    while(node->next != NULL){
-        cout << *node;
-        printDeck(node->next);
-    }
-}
-*/
+
 void deck::deleteList()
 // Deletes the entire list.
 {
@@ -158,12 +149,12 @@ void deck::deleteList()
 
 card deck::deal() {
 
-
+    // Creates 3 cards. Mem is the card that is returned. Temp searches for NEXT card. T is the current card.
     card *temp = head;
     card *t;
     card *mem;
 
-
+    // If linked list is 1 node, sets head to NULL.
     if(head->next==NULL)
     {
         mem = head;
@@ -179,6 +170,7 @@ card deck::deal() {
             t=temp;
             temp=temp->next;
         }
+        // Assigns mem to next card of T before deleting and freeing it from memory.
         mem = t->next;
         free(t->next);
         t->next=NULL;
@@ -192,7 +184,7 @@ void deck::replace(card *input)
         // Creates a dummy-card;
         card *mem;
 
-        // Data is transfered to dummy-card.
+        // Data is transferred to dummy-card.
         mem->setValue(input->getValue());
         mem->setSuit(input->getSuit());
 
