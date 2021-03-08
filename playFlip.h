@@ -17,5 +17,4 @@ using namespace std;
 
 void playFlip();
 
-
 #endif //PLAYFLIP_H

@@ -4,7 +4,6 @@
  * Function definition for playFlip global function.
  */
 
-#include <ctime>
 #include <algorithm>
 #include"card.h"
 #include "deck.h"
@@ -13,7 +12,9 @@
 using namespace std;
 
 void playFlip()
+//global playFlip() function
 {
+    //initializes a variable to keep track of points
     int currentPoints = 0;
 
     //We create an original or MASTER deck of cards
@@ -49,10 +50,11 @@ void playFlip()
     }
 
 
-
+    //outputs 24-card deck used during game to screen
     cout << endl << "NEW DECK" << endl ;
     cout << *deckNEW;
 
+    //directions
     cout << endl << "24 cards have been selected from a deck shuffled three times." << endl;
     cout << "Your goal is to draw cards individually and have the most amount of points after 24 draws." << endl;
     cout << "An ace is worth 10 points, other face cards are worth 5, and all Hearts add 1 point." << endl;
@@ -68,6 +70,7 @@ void playFlip()
 
     card dealtCard;
 
+    //while loop that runs for whenever the player draws a card
     while(input == 1)
     {
 
@@ -77,6 +80,7 @@ void playFlip()
         cout << "Your card is: " << endl;
         cout << dealtCard << endl;
 
+        //the following if statements deal with point distribution
         if(dealtCard.getValue() == 1)
         {
             currentPoints = currentPoints + 10;
@@ -120,6 +124,7 @@ void playFlip()
             cout << "No effect on your points!" << endl;
         }
 
+        //screen output to tell player how many points they have after drawing
         if (currentPoints == 1)
         {
             cout << "------------------------------" << endl;
@@ -132,8 +137,8 @@ void playFlip()
             cout << "------------------------------" << endl;
         }
 
+        //increments the counter so the game ends when the deck is fully drawn from
         i++;
-
         if(i == 24)
         {
             input == 2;
@@ -148,6 +153,7 @@ void playFlip()
 
     cout << "Replaced Master Deck: " << endl << *deckMASTER << endl;
 
+    //if statement that runs when the player elects to end the game of flip
     if (input == 2)
     {
         if (currentPoints == 1)
@@ -162,8 +168,5 @@ void playFlip()
             cout << "----------------------------------------------" << endl;
         }
     }
-
-
-
 }
 
