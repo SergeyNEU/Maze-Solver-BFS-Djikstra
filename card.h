@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part A
+ * Project 2, Part B
  * Contains card class and all necessary functions.
  * Implements card class to run a game of flip.
  */
@@ -30,13 +30,14 @@ public:
     //An overloaded operator << that prints a response (global).
     friend ostream& operator << (ostream &out, card &A);
 
+    // Overloaded assignment operator.
     card &operator = (const card &cardEqual);
 
-    //creates a card node with a next pointer
+    // Creates a card node with a next pointer
     card *next;
 
 private:
     int value;
     string suit;
-}; // End of code class
-#endif //CODE_H
+}; // End of card class
+#endif //CARD_H

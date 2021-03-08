@@ -134,29 +134,36 @@ void playFlip()
 
         i++;
 
-        cout << endl << "Cards Remaining: " << endl <<*deckNEW;
+        if(i == 24)
+        {
+            input == 2;
+            break;
+        }
+
+        cout << endl << "Cards Remaining: " << endl << *deckNEW << endl;
 
         cout << "Enter: 1 to Draw / 2 to End Game" << endl;
         cin >> input;
-
-        if(i == 24)
-        {
-            input = 2;
-        }
     }
+
+    cout << "Replaced Master Deck: " << endl << *deckMASTER << endl;
 
     if (input == 2)
     {
         if (currentPoints == 1)
         {
-            cout << "You have ended the game with " << currentPoints << " point!" << endl;
+            cout << "----------------------------------------------" << endl;
+            cout << "--- You have ended the game with " << currentPoints << " point! --- " << endl;
+            cout << "----------------------------------------------" << endl;
         }
         else {
-            cout << "You have ended the game with " << currentPoints << " points!" << endl;
+            cout << "----------------------------------------------" << endl;
+            cout << "--- You have ended the game with " << currentPoints << " points! --- " << endl;
+            cout << "----------------------------------------------" << endl;
         }
     }
 
-    cout << "Replaced Cards: " << endl << *deckMASTER;
+
 
 }
 

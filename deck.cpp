@@ -124,7 +124,7 @@ void deck::shuffle()
     }
 
 }
-
+/*
 void deck::printDeck(card *node)
 // Goes through the entire deck, printing every linked list node.
 {
@@ -133,7 +133,7 @@ void deck::printDeck(card *node)
         printDeck(node->next);
     }
 }
-
+*/
 void deck::deleteList()
 // Deletes the entire list.
 {
@@ -163,10 +163,14 @@ card deck::deal() {
     card *t;
     card *mem;
 
+
     if(head->next==NULL)
     {
-        free(head);
-        head=NULL;
+        mem = head;
+        head = NULL;
+    }
+    else if(head==NULL){
+        mem = NULL;
     }
     else
     {
