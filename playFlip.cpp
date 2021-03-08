@@ -72,6 +72,7 @@ void playFlip()
     {
 
         dealtCard = deckNEW->deal();
+        deckMASTER->replace(&dealtCard);
 
         cout << "Your card is: " << endl;
         cout << dealtCard << endl;
@@ -154,5 +155,8 @@ void playFlip()
             cout << "You have ended the game with " << currentPoints << " points!" << endl;
         }
     }
+
+    cout << "Replaced Cards: " << endl << *deckMASTER;
+
 }
 

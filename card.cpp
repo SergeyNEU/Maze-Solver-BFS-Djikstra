@@ -22,7 +22,7 @@ card &card::operator= (const card &cardEqual)
 
     value = cardEqual.value;
     suit = cardEqual.suit;
-    //next = cardEqual.next;
+    next = cardEqual.next;
 
     // return the existing object so we can chain this operator
     return *this;

@@ -169,9 +169,19 @@ card deck::deal() {
     return *mem;
 }
 
-void deck::replace(card *input) {
-// Replace takes a card from a certain position specified by USER. It removes the card in the NEW deck and puts it in the MASTER deck.
-    {
+void deck::replace(card *input)
+// Replace takes a card and puts it at the bottom of the deck. (NEW HEAD NODE).
+{
+        // Creates a dummy-card;
+        card *mem;
 
-    }
+        // Data is transfered to dummy-card.
+        mem->setValue(input->getValue());
+        mem->setSuit(input->getSuit());
+
+        // Makes next node have the current head address and point to it.
+        mem->next = head;
+
+        // Makes the current node as head.
+        head = mem;
 }
