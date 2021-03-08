@@ -54,22 +54,23 @@ void playFlip()
     cout << endl << "NEW DECK" << endl ;
     cout << *deckNEW;
 
-    cout << "24 cards have been selected from a deck shuffled three times." << endl;
+    cout << endl << "24 cards have been selected from a deck shuffled three times." << endl;
     cout << "Your goal is to draw cards individually and have the most amount of points after 24 draws." << endl;
     cout << "An ace is worth 10 points, other face cards are worth 5, and all Hearts add 1 point." << endl;
     cout << "However, a 7 will cut your points in half and 2, 3, 4, 5, and 6 make you lose all of your points." << endl;
     cout << "Lastly, 8, 9, and 10 will not change your score." << endl;
-    cout << "When prompted, enter 1 into the keyboard to draw a card" << endl;
+    cout << "When prompted, enter 1 into the keyboard to draw a card. Enter 2 to end the game." << endl;
 
     //game start
-    cout << "The deck has now been shuffled, good luck!" << endl;
+    cout << "The deck has now been shuffled, good luck!" << endl << endl;
 
     int input = 1;
     int i = 0;
 
     while(input == 1)
     {
-        cout << "Your card is " << *deckNEW->head << endl;
+        cout << "Your card is: " << endl;
+        cout << *deckNEW->head << endl;
 
         if(deckNEW->head->getValue() == 1)
         {
@@ -103,11 +104,13 @@ void playFlip()
             cout << "Heart bonus! +1 point!" << endl;
         }
 
-        cout << "You now have " << currentPoints << " points!" << endl;
+        cout << "------------------------------" << endl;
+        cout << "--- You now have " << currentPoints << " points. --- " << endl;
+        cout << "------------------------------" << endl;
         deckNEW->head = deckNEW->head->next;
         i++;
 
-        cout << "Enter 1 again to draw your next card!" << endl;
+        cout << "Enter: 1 to Draw / 2 to End Game" << endl;
         cin >> input;
 
         if(i == 24)
