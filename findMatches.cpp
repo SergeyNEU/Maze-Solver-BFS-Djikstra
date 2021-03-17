@@ -5,12 +5,11 @@
  * ---
  */
 
-#include "findMatches.h"
-
 using namespace std;
 
-int main()
+void findMatches()
+//global playFlip() function
 {
-    findMatches();
-    return 0;
+
 }
+

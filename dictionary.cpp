@@ -1,10 +1,11 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part B
- * Function definition for card class.
+ * Project 3, Part A
+ * ---
+ * ---
  */
 
-#include "card.h"
+#include "dictionary.h.h"
 
 ostream& operator << (ostream &out, card&A)
 // Overloaded assignment operator for cout - prints value and suit.

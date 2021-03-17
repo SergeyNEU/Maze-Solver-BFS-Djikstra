@@ -1,20 +1,20 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part B
- * Contains playFlip global function.
+ * Project 3, Part A
+ * ---
+ * ---
  */
 
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
-#include "card.h"
 
-#ifndef PLAYFLIP_H
-#define PLAYFLIP_H
+#ifndef FINDMATCHES_H
+#define FINDMATCHES_H
 
 using namespace std;
 
-void playFlip();
+void findMatches();
 
-#endif //PLAYFLIP_H
+#endif //FINDMATCHES_H

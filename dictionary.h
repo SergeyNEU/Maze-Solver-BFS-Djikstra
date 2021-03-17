@@ -1,21 +1,21 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 2, Part B
- * Contains card class and all necessary functions.
- * Implements card class to run a game of flip.
+ * Project 3, Part A
+ * ---
+ * ---
  */
 
 #include <iostream>
 
-#ifndef CARD_H
-#define CARD_H
+#ifndef DICTIONARY_H
+#define DICTIONARY_H
 
 using namespace std;
 
-class card
+class dictionary
 {
 public:
-
+    /*
     card();
 
     // Copy constructor
@@ -35,9 +35,9 @@ public:
 
     // Creates a card node with a next pointer
     card *next;
-
+    */
 private:
     int value;
     string suit;
-}; // End of card class
-#endif //CARD_H
+}; // End of dictionary class
+#endif //DICTIONARY_H
