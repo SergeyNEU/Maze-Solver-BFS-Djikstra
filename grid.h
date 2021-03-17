@@ -5,10 +5,13 @@
  * ---
  */
 
-#include <iostream>
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
+#include "iostream"
+#include "fstream"
+#include <vector>
+#include <algorithm>
 
 #ifndef GRID_H
 #define GRID_H
@@ -18,20 +21,15 @@ using namespace std;
 class grid
 {
 private:
-    // Amount of cards in a deck.
-    int fullDeck = 52;
-public:
-    /*deck();
-    ~deck();
-    void shuffle();
-    void append(int value, string suit);
-    void deleteList();
-    void replace(card *input);
-    card deal();
-    friend ostream& operator << (ostream &out, deck &A);
+    int rows;
+    int columns;
 
-    // Header to linked list.
-    card* head = NULL;
-     */
+    //Dynamically create a 2D array
+    char **array2D;
+public:
+    grid();
+    void readGrid();
+
+
 };
 #endif //GRID_H

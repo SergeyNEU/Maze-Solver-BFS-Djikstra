@@ -5,60 +5,80 @@
  * ---
  */
 
-#include "dictionary.h.h"
+#include "dictionary.h"
 
-ostream& operator << (ostream &out, card&A)
-// Overloaded assignment operator for cout - prints value and suit.
-{
-    out << "Value:   " << A.getValue() << endl;
-    out << "Suit:    " << A.getSuit() << endl;
-    return out;
+dictionary::dictionary(){
+    readWords();
+    sortWords();
 }
 
-card &card::operator= (const card &cardEqual)
-{
-    // Copies all contents of one card to another.
-    value = cardEqual.value;
-    suit = cardEqual.suit;
+void dictionary::readWords() {
+    ifstream file;
 
-    // Return the existing object so this function can be chained.
-    return *this;
+    //string fileEntered;
+    //cout << "Type in the file name to read in: " << endl;
+    //getline(cin, fileEntered);
+
+    file.open("dictionary.txt");
+    if (!file.is_open()){
+        cout << "Cannot open file!" << endl;
+        return;
+    }
+
+    string word;
+    while (file >> word)
+    {
+        words.push_back(word);
+    }
+
+    //Tests
+    //cout << words[0] << endl;
+    //cout << words[3] << endl;
 }
 
-card::card()
-// Initializes each card object with default, trivial values.
-{
-    value = 0;
-    suit = "default";
+void dictionary::printVector() {
+
+    int size = words.size();
+
+    for(int i = 0; i < size; i++){
+        cout << words[i] << endl;
+    }
+
 }
 
-card::card(const card &card1)
-// Copy constructor.
-{
-    value = card1.value;
-    suit = card1.suit;
+void dictionary::sortWords(){
+    basic_string<char> t;
+    for (size_t i = 0; i < words.size() - 1; i++) {
+        size_t min = i;
+        for (size_t j = i + 1; j < words.size(); j++){
+            if (words[j] < words[min]){
+                min = j;
+            }
+        }
+
+        t = words[i];
+        words[i] = words[min];
+        words[min] = t;
+    }
 }
 
-string card::getSuit()
-// Returns the suit value of a card
-{
-    return suit;
+bool dictionary::binarySearch(int beginning, int end, string inputWord) {
+        if(beginning <= end) {
+            int mid = (words.size()/2);
+            if(words[mid] == inputWord) {
+                //wordFound = true;
+                return true;
+            }
+            if(words[mid] < inputWord) {
+                return binarySearch(0, mid - 1, inputWord);
+            }
+            if(words[mid] > inputWord) {
+                return binarySearch(mid + 1, words.size(), inputWord);
+            }
+        }
+        return false;
 }
 
-int card::getValue()
-// Returns the number value of a card
-{
-    return value;
-}
-
-void card::setValue(int setVal)
-// Sets the number value of a card
-{
-    value = setVal;
-}
-
-void card::setSuit(string setSuit)
-// Sets the suit value of a card
-{
-    suit = setSuit;
+bool dictionary::wordLookup(string inputWord) {
+    return binary_search(words.begin(),words.end(),inputWord);
 }

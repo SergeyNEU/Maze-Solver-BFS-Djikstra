@@ -6,6 +6,10 @@
  */
 
 #include <iostream>
+#include "iostream"
+#include "fstream"
+#include <vector>
+#include <algorithm>
 
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
@@ -15,29 +19,15 @@ using namespace std;
 class dictionary
 {
 public:
-    /*
-    card();
+    dictionary();
+    void readWords();
+    void printVector();
+    void sortWords();
+    bool binarySearch(int beginning, int end, string inputWord);
+    bool wordLookup(string inputWord);
 
-    // Copy constructor
-    card(const card &card1);
-
-
-    void setValue(int setVal);
-    void setSuit(string setSuit);
-    int getValue();
-    string getSuit();
-
-    //An overloaded operator << that prints a response (global).
-    friend ostream& operator << (ostream &out, card &A);
-
-    // Overloaded assignment operator.
-    card &operator = (const card &cardEqual);
-
-    // Creates a card node with a next pointer
-    card *next;
-    */
 private:
-    int value;
+    vector<string> words;
     string suit;
 }; // End of dictionary class
 #endif //DICTIONARY_H
