@@ -24,9 +24,9 @@ class grid
 private:
     int rows;
     int columns;
-    matrix<char> gridMatrix;
 
 public:
+    matrix<char> gridMatrix;
     grid();
     void readGrid();
     void outputGrid();

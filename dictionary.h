@@ -26,8 +26,9 @@ public:
     bool binarySearch(int beginning, int end, string inputWord);
     bool wordLookup(string inputWord);
 
-private:
     vector<string> words;
     string suit;
+
+private:
 }; // End of dictionary class
 #endif //DICTIONARY_H
