@@ -12,9 +12,11 @@ using namespace std;
 void findMatches()
 //global findMatches() function
 {
+    cout << "findMatches function initiated." << endl;
     dictionary list;
-    list.readWords();
-    list.sortWords();
+    cout << "dictionary input done done." << endl;
+    list.printVector();
+    cout << "printVector done." << endl;
 
     grid grid;
     grid.readGrid();
