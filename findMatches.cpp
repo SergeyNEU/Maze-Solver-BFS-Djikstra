@@ -19,7 +19,7 @@ void findMatches()
     cout << "printVector done." << endl;
 
     grid grid;
-    grid.readGrid();
+    grid.outputGrid();
 
     /*
      * check the size of the word
