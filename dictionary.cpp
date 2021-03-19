@@ -19,7 +19,7 @@ void dictionary::readWords() {
     //cout << "Type in the file name to read in: " << endl;
     //getline(cin, fileEntered);
 
-    file.open("dictionary.txt");
+    file.open("dictionary2.txt");
     if (!file.is_open()){
         cout << "Cannot open file!" << endl;
         return;
