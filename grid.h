@@ -12,6 +12,7 @@
 #include "fstream"
 #include <vector>
 #include <algorithm>
+#include "d_matrix.h"
 
 #ifndef GRID_H
 #define GRID_H
@@ -23,13 +24,11 @@ class grid
 private:
     int rows;
     int columns;
+    matrix<char> gridMatrix;
 
-    //Dynamically create a 2D array
-    char **array2D;
 public:
     grid();
     void readGrid();
-
-
+    void outputGrid();
 };
 #endif //GRID_H

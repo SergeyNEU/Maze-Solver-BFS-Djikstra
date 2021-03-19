@@ -14,13 +14,18 @@ using namespace std;
 int main()
 {
     findMatches();
+    cout << "findMatches done." << endl;
     dictionary test;
+    cout << "dictionary test done." << endl;
     test.printVector();
+    cout << "printVector done." << endl;
 
     if(test.wordLookup("parry"))
         cout << "WORD FOUND!";
 
 
     grid test2;
+    test2.outputGrid();
+
     return 0;
 }

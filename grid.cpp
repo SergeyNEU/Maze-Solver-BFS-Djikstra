@@ -5,16 +5,11 @@
  * ---
  */
 
-#include <ctime>
-#include <algorithm>
 #include "grid.h"
 
 grid::grid(){
     readGrid();
-    array2D[1][1] = 'b';
-    //TEST: should output 'testing value for second row & col: b';
-    //cout << "testing value for second row & col: " << array2D[1][1] << endl;
-
+    cout << "readGrid Done" << endl;
 }
 
 void grid::readGrid(){
@@ -30,23 +25,29 @@ void grid::readGrid(){
         return;
     }
 
-    //Uses the first line to find the rows and columns.
+    // Uses the first line to find the rows and columns.
     string word;
     (file >> rows);
     (file >> columns);
 
-    //Dynamically create 2D Array
-    array2D = new char *[rows];
-    for (int i = 0; i < rows; i++)
-        array2D[i] = new char[columns];
+    // Dynamically resize the Matrix
+    gridMatrix.resize(columns,rows);
 
     //Stores the matrix in the 2D Array.
     string matrixInput;
     for(int x = 0; x < columns; x++){
         for(int y = 0; y < rows; y++){
             file >> matrixInput;
-            array2D[x][y] = matrixInput[0];
+            gridMatrix[x][y] = matrixInput[0];
         }
     }
+}
 
+void grid::outputGrid() {
+    for(int x = 0; x < columns; x++){
+        for(int y = 0; y < rows; y++){
+            cout << gridMatrix[x][y] << " ";
+        }
+        cout << endl;
+    }
 }
