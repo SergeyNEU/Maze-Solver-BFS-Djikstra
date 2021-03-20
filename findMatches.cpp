@@ -24,7 +24,7 @@ void findMatches()
 
     //declare variables used in the function
     vector<string> wordsFound;
-    int iminus1, iplus1, jminus1, jplus1;
+    int iminus1, iplus1, jminus1, jplus1, l;
     cout << "Words found: " << endl;
 
     //runs for the given columns and rows of the grid
@@ -37,65 +37,114 @@ void findMatches()
                 //check if grid letter equals the first letter of word
                 if (grid.gridMatrix[i][j] == list.words[k][0])
                 {
-                    //check horizontal vertical and diagonal from letter
-                    for (int l = 1; l <= list.words[k].size(); l++)
+                    l = 1;
+
+                    //following if statements handle the edge cases
+                    if(i - l < 0)
                     {
-                        //following if statements handle the edge cases
-                        if(i - l < 0)
-                        {
-                            iminus1 = (grid.gridMatrix.rows()+i) - l;
-                        } else{
-                           iminus1 = i - l;
+                        iminus1 = (grid.gridMatrix.rows()+i) - l;
+                    } else{
+                       iminus1 = i - l;
+                    }
+
+                    if(j - l < 0)
+                    {
+                        jminus1 = (grid.gridMatrix.cols()+j) - l;
+                    }else{
+                        jminus1 = j - l;
+                    }
+
+                    if(i + l > grid.gridMatrix.rows() - 1)
+                    {
+                        iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                    }else{
+                        iplus1 = i + l;
+                    }
+
+                    if(j + l > grid.gridMatrix.cols() - 1)
+                    {
+                        jplus1 = -(grid.gridMatrix.cols()-j) + l;
+                    }else{
+                        jplus1 = j + l;
+                    }
+
+                    //horizontal positive side
+                    while(grid.gridMatrix[i][jplus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
                         }
 
-                        if(j - l < 0)
-                        {
-                            jminus1 = (grid.gridMatrix.cols()+j) - l;
-                        }else{
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
                             jminus1 = j - l;
                         }
 
-                        if(i + l > grid.gridMatrix.rows() - 1)
-                        {
+                        if (i + l > grid.gridMatrix.rows() - 1) {
                             iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        }else{
+                        } else {
                             iplus1 = i + l;
                         }
 
-                        if(j + l > grid.gridMatrix.cols() - 1)
-                        {
-                            jplus1 = -(grid.gridMatrix.cols()-j) + l;
-                        }else{
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+                    }
+
+                    l = 1;
+
+                    //horizontal negative side
+                    while(grid.gridMatrix[i][jminus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
                             jplus1 = j + l;
                         }
 
-                        if (
-                            //break if no word was found
-
-                                grid.gridMatrix[iminus1][j] != list.words[k][l] &&
-                                grid.gridMatrix[iplus1][j] != list.words[k][l] &&
-                                grid.gridMatrix[i][jplus1] != list.words[k][l] &&
-                                grid.gridMatrix[i][jminus1] != list.words[k][l] &&
-                                grid.gridMatrix[iplus1][jplus1] != list.words[k][l] &&
-                                grid.gridMatrix[iminus1][jminus1] != list.words[k][l] &&
-                                grid.gridMatrix[iplus1][jminus1] != list.words[k][l] &&
-                                grid.gridMatrix[iminus1][jplus1] != list.words[k][l] )
-
-                        {
-                            break;
-                        }
-                        //add found word to a vector
-                        else if (l == list.words[k].size()-1)
-                        {
-                            wordsFound.push_back(list.words[k]);
-                        }
                     }
                 }
+
             }
+
+
+
+
         }
     }
 
-    for(int i=0; i < wordsFound.size(); i++)
+    for (int i=0; i < wordsFound.size(); i++)
         std::cout << wordsFound.at(i) << ' ';
 
 }
