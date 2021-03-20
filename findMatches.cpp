@@ -26,15 +26,13 @@ void findMatches()
      * check anywhere it could be in [x][y] grid
      */
     vector<string> wordsFound;
-    int a, b = 0;
+    int a, b, iminus1, iplus1, jminus1, jplus1;
     cout << "Words found: " << endl;
 
     for (int i = 0; i < grid.gridMatrix.rows()-1; i++)
     {
         for (int j = 0; j < grid.gridMatrix.cols()-1; j++)
         {
-            //cout << grid[i][j] << " ";
-            //for each word
             for (int k = 0; k < list.words.size(); k++)
             {
                 //check if grid letter equals the first letter of word
@@ -44,43 +42,58 @@ void findMatches()
                     //check horizontal vertical and diagonal
                     for (int l = 1; l <= list.words[k].size(); l++)
                     {
-                        cout << "Check4" << endl;
-                       if(i == 0)
-                       {
-                            a = i;
-                            i = grid.gridMatrix.rows() - l;
-                       }
-                       if(j == 0)
-                       {
-                            b = j;
-                            j = grid.gridMatrix.cols() - l;
-                       }
-                        if(i == grid.gridMatrix.rows()-1)
+                        cout << "Check2" << endl;
+
+                        if(i - l < 0)
                         {
-                            a = i;
-                            i = -1+l;
+                            iminus1 = grid.gridMatrix.rows() - l;
+                        } else{
+                           iminus1 = i - 1;
                         }
-                        if(j == grid.gridMatrix.cols()-1)
+
+                        if(j - l < 0)
                         {
-                            b = j;
-                            j = -1+l;
+                            jminus1 = grid.gridMatrix.cols() - l;
+                        }else{
+                            jminus1 = j - 1;
                         }
-                            cout << "Check5" << endl;
+
+                        if(i + l > grid.gridMatrix.rows() - 1)
+                        {
+                            iplus1 = -1 + l;
+                        }else{
+                            iplus1 = i + 1;
+                        }
+
+                        if(j + l > grid.gridMatrix.cols() - 1)
+                        {
+                            jplus1 = -1 + l;
+                        }else{
+                            jplus1 = j + 1;
+                        }
+                            cout << "Check3" << endl;
+
+                        cout << "i: " << i << endl;
+                        cout << "j: " << j << endl;
+                        cout << "i+1: " << iplus1 << endl;
+                        cout << "j+1: " << jplus1 << endl;
+                        cout << "i-1: " << iminus1 << endl;
+                        cout << "j-1: " << jminus1 << endl;
 
                         if (
                             //break if no word was found
 
-                                grid.gridMatrix[i-l][j] != list.words[k][l] &&
-                                grid.gridMatrix[i+l][j] != list.words[k][l] &&
-                                grid.gridMatrix[i][j+l] != list.words[k][l] &&
-                                grid.gridMatrix[i][j-l] != list.words[k][l] &&
-                                grid.gridMatrix[i+l][j+l] != list.words[k][l] &&
-                                grid.gridMatrix[i-l][j-l] != list.words[k][l] &&
-                                grid.gridMatrix[i+l][j-l] != list.words[k][l] &&
-                                grid.gridMatrix[i-l][j+l] != list.words[k][l] )
+                                grid.gridMatrix[iminus1][j] != list.words[k][l] &&
+                                grid.gridMatrix[iplus1][j] != list.words[k][l] &&
+                                grid.gridMatrix[i][jplus1] != list.words[k][l] &&
+                                grid.gridMatrix[i][jminus1] != list.words[k][l] &&
+                                grid.gridMatrix[iplus1][jplus1] != list.words[k][l] &&
+                                grid.gridMatrix[iminus1][jminus1] != list.words[k][l] &&
+                                grid.gridMatrix[iplus1][jminus1] != list.words[k][l] &&
+                                grid.gridMatrix[iminus1][jplus1] != list.words[k][l] )
 
                         {
-                            cout << "Check2" << endl;
+                            cout << "Check4" << endl;
                             break;
                         }
                         else if (l == list.words[k].size()-1)
@@ -94,17 +107,18 @@ void findMatches()
                             //location.push_back(i+1);
                             //locations.push_back(location);
                             //add word to wordsFound
-                            cout << "Check3" << endl;
+                            cout << "Check5" << endl;
                             wordsFound.push_back(list.words[k]);
                         }
-                        i = a;
-                        j = b;
                     }
                 }
             }
         }
         //cout << endl;
     }
+
+    for(int i=0; i < wordsFound.size(); i++)
+        std::cout << wordsFound.at(i) << ' ';
 
     /*
     for(int i = 0; i < list.words.size(); i++) {
