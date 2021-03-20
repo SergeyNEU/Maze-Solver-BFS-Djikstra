@@ -134,12 +134,207 @@ void findMatches()
                         }
 
                     }
+
+                    //vertical positive side
+                    while(grid.gridMatrix[i][iminus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
+
+                    //vertical negative side
+                    while(grid.gridMatrix[i][iplus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
+
+                    //diagonal 1
+                    while(grid.gridMatrix[iminus1][jminus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
+
+                    //diagonal 2
+                    while(grid.gridMatrix[iplus1][jplus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
+
+                    //diagonal 3
+                    while(grid.gridMatrix[iplus1][jminus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
+
+                    //diagonal 4
+                    while(grid.gridMatrix[iminus1][jplus1] == list.words[k][l]) {
+                        if (l == list.words[k].size() - 1) {
+                            wordsFound.push_back(list.words[k]);
+                            break;
+                        }
+                        l++;
+                        if (i - l < 0) {
+                            iminus1 = (grid.gridMatrix.rows() + i) - l;
+                        } else {
+                            iminus1 = i - l;
+                        }
+
+                        if (j - l < 0) {
+                            jminus1 = (grid.gridMatrix.cols() + j) - l;
+                        } else {
+                            jminus1 = j - l;
+                        }
+
+                        if (i + l > grid.gridMatrix.rows() - 1) {
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
+                        } else {
+                            iplus1 = i + l;
+                        }
+
+                        if (j + l > grid.gridMatrix.cols() - 1) {
+                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
+                        } else {
+                            jplus1 = j + l;
+                        }
+
+                    }
                 }
 
             }
-
-
-
 
         }
     }
