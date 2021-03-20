@@ -79,5 +79,3 @@ bool dictionary::binarySearch(int beginning, int end, string inputWord)
         }
         return false;
 }
-
-}

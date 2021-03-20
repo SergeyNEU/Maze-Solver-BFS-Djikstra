@@ -12,11 +12,8 @@ void findMatches()
 //global findMatches() function
 {
     //initializing the dictionary and list
-    cout << "findMatches function initiated." << endl;
     dictionary list;
-    cout << "dictionary input done done." << endl;
     list.printVector();
-    cout << "printVector done." << endl;
 
     //initializes the grid
     grid grid;
@@ -24,8 +21,9 @@ void findMatches()
 
     //declare variables used in the function
     vector<string> wordsFound;
+
+    // iminus1 represents the left row (and so on). L represents the distance from the current letter (1 over, 2 over, etc).
     int iminus1, iplus1, jminus1, jplus1, l;
-    cout << "Words found: " << endl;
 
     //runs for the given columns and rows of the grid
     for (int i = 0; i < grid.gridMatrix.rows(); i++)
@@ -230,6 +228,7 @@ void findMatches()
         }
     }
 
+    cout << "Words found: " << endl;
     //prints out the vector of found words
     for (int i=0; i < wordsFound.size(); i++)
         std::cout << wordsFound.at(i) << ' ';
