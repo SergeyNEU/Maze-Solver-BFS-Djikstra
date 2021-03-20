@@ -26,12 +26,12 @@ void findMatches()
      * check anywhere it could be in [x][y] grid
      */
     vector<string> wordsFound;
-    int a, b, iminus1, iplus1, jminus1, jplus1;
+    int iminus1, iplus1, jminus1, jplus1;
     cout << "Words found: " << endl;
 
-    for (int i = 0; i < grid.gridMatrix.rows()-1; i++)
+    for (int i = 0; i < grid.gridMatrix.rows(); i++)
     {
-        for (int j = 0; j < grid.gridMatrix.cols()-1; j++)
+        for (int j = 0; j < grid.gridMatrix.cols(); j++)
         {
             for (int k = 0; k < list.words.size(); k++)
             {
@@ -46,40 +46,45 @@ void findMatches()
 
                         if(i - l < 0)
                         {
-                            iminus1 = grid.gridMatrix.rows() - l;
+                            iminus1 = (grid.gridMatrix.rows()+i) - l;
                         } else{
-                           iminus1 = i - 1;
+                           iminus1 = i - l;
                         }
 
                         if(j - l < 0)
                         {
-                            jminus1 = grid.gridMatrix.cols() - l;
+                            jminus1 = (grid.gridMatrix.cols()+j) - l;
                         }else{
-                            jminus1 = j - 1;
+                            jminus1 = j - l;
                         }
 
                         if(i + l > grid.gridMatrix.rows() - 1)
                         {
-                            iplus1 = -1 + l;
+                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
                         }else{
-                            iplus1 = i + 1;
+                            iplus1 = i + l;
                         }
 
                         if(j + l > grid.gridMatrix.cols() - 1)
                         {
-                            jplus1 = -1 + l;
+                            jplus1 = -(grid.gridMatrix.cols()-j) + l;
                         }else{
-                            jplus1 = j + 1;
+                            jplus1 = j + l;
                         }
                             cout << "Check3" << endl;
-
-                        cout << "i: " << i << endl;
-                        cout << "j: " << j << endl;
+                        /*
+                        cout << "L = " << l << endl;
                         cout << "i+1: " << iplus1 << endl;
-                        cout << "j+1: " << jplus1 << endl;
+                        cout << "i: " << i << endl;
                         cout << "i-1: " << iminus1 << endl;
-                        cout << "j-1: " << jminus1 << endl;
 
+                        cout << "j+1: " << jplus1 << endl;
+                        cout << "j: " << j << endl;
+                        cout << "j-1: " << jminus1 << endl;
+                        cout << endl << grid.gridMatrix[iminus1][jminus1] << " " << grid.gridMatrix[iminus1][j] << " " <<  grid.gridMatrix[iminus1][jplus1] << endl;
+                        cout << grid.gridMatrix[i][jminus1] << " " << grid.gridMatrix[i][j] << " " <<  grid.gridMatrix[i][jplus1] << endl;
+                        cout << grid.gridMatrix[iplus1][jminus1] << " " << grid.gridMatrix[iplus1][j] << " " <<  grid.gridMatrix[iplus1][jplus1] << endl << endl;
+                        */
                         if (
                             //break if no word was found
 
@@ -93,7 +98,7 @@ void findMatches()
                                 grid.gridMatrix[iminus1][jplus1] != list.words[k][l] )
 
                         {
-                            cout << "Check4" << endl;
+                            cout << "FAILED TO FIND WORD" << endl;
                             break;
                         }
                         else if (l == list.words[k].size()-1)
@@ -107,7 +112,7 @@ void findMatches()
                             //location.push_back(i+1);
                             //locations.push_back(location);
                             //add word to wordsFound
-                            cout << "Check5" << endl;
+                            cout << "WORD FOUND" << endl;
                             wordsFound.push_back(list.words[k]);
                         }
                     }
