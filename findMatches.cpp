@@ -29,9 +29,9 @@ void findMatches()
     int a, b = 0;
     cout << "Words found: " << endl;
 
-    for (int i = 1; i < grid.gridMatrix.rows()-1; i++)
+    for (int i = 0; i < grid.gridMatrix.rows()-1; i++)
     {
-        for (int j = 1; j < grid.gridMatrix.cols()-1; j++)
+        for (int j = 0; j < grid.gridMatrix.cols()-1; j++)
         {
             //cout << grid[i][j] << " ";
             //for each word
@@ -45,16 +45,26 @@ void findMatches()
                     for (int l = 1; l <= list.words[k].size(); l++)
                     {
                         cout << "Check4" << endl;
-                       // if(i == 0)
-                       // {
-                      //      a = i;
-                       //     i = grid.gridMatrix.rows() - 1;
-                       // }
-                       // if(j == 0)
-                       // {
-                       //     b = j;
-                       //     j = grid.gridMatrix.cols() - 1;
-                       // }
+                       if(i == 0)
+                       {
+                            a = i;
+                            i = grid.gridMatrix.rows() - l;
+                       }
+                       if(j == 0)
+                       {
+                            b = j;
+                            j = grid.gridMatrix.cols() - l;
+                       }
+                        if(i == grid.gridMatrix.rows()-1)
+                        {
+                            a = i;
+                            i = -1+l;
+                        }
+                        if(j == grid.gridMatrix.cols()-1)
+                        {
+                            b = j;
+                            j = -1+l;
+                        }
                             cout << "Check5" << endl;
 
                         if (
@@ -87,8 +97,8 @@ void findMatches()
                             cout << "Check3" << endl;
                             wordsFound.push_back(list.words[k]);
                         }
-                       // i = a;
-                       // j = b;
+                        i = a;
+                        j = b;
                     }
                 }
             }
