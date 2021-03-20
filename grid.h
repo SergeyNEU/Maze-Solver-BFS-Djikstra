@@ -1,8 +1,8 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 3, Part A
- * ---
- * ---
+ * Grid class that stores the nxn grid.
+ * Uses the given d_matrix.h class.
  */
 
 #include <cstdlib>

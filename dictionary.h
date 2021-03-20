@@ -1,8 +1,7 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 3, Part A
- * ---
- * ---
+ * Creates the dictionary class which stores all the words.
  */
 
 #include <iostream>
@@ -24,10 +23,8 @@ public:
     void printVector();
     void sortWords();
     bool binarySearch(int beginning, int end, string inputWord);
-    bool wordLookup(string inputWord);
 
     vector<string> words;
-    string suit;
 
 private:
 }; // End of dictionary class

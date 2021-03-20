@@ -1,25 +1,24 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 3, Part A
- * ---
- * ---
+ * Dictionary Class function definition
  */
 
 #include "dictionary.h"
 
-dictionary::dictionary(){
+dictionary::dictionary()
+// Reads in words from dictionary.txt and sorts them once a new dictionary object is called.
+{
     readWords();
     sortWords();
 }
 
-void dictionary::readWords() {
+void dictionary::readWords()
+{
     ifstream file;
 
-    //string fileEntered;
-    //cout << "Type in the file name to read in: " << endl;
-    //getline(cin, fileEntered);
-
     file.open("dictionary.txt");
+
     if (!file.is_open()){
         cout << "Cannot open file!" << endl;
         return;
@@ -27,6 +26,7 @@ void dictionary::readWords() {
 
     string word;
     while (file >> word)
+    // Enters each word into the words vector.
     {
         words.push_back(word);
     }
@@ -43,7 +43,9 @@ void dictionary::printVector() {
 
 }
 
-void dictionary::sortWords(){
+void dictionary::sortWords()
+// Uses selection sort to sort the words vector.
+{
     basic_string<char> t;
     for (size_t i = 0; i < words.size() - 1; i++) {
         size_t min = i;
@@ -59,7 +61,9 @@ void dictionary::sortWords(){
     }
 }
 
-bool dictionary::binarySearch(int beginning, int end, string inputWord) {
+bool dictionary::binarySearch(int beginning, int end, string inputWord)
+// Binary Search for the word lookups.
+{
         if(beginning <= end) {
             int mid = (words.size()/2);
             if(words[mid] == inputWord) {
@@ -76,6 +80,4 @@ bool dictionary::binarySearch(int beginning, int end, string inputWord) {
         return false;
 }
 
-bool dictionary::wordLookup(string inputWord) {
-    return binary_search(words.begin(),words.end(),inputWord);
 }
