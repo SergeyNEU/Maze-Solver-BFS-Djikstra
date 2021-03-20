@@ -1,8 +1,7 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 3, Part A
- * ---
- * ---
+ * Contains the information for the global findMatches() function
  */
 
 #include <iostream>
