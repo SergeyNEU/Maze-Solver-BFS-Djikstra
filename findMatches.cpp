@@ -15,8 +15,8 @@ void findMatches()
     cout << "findMatches function initiated." << endl;
     dictionary list;
     cout << "dictionary input done done." << endl;
-    //list.printVector();
-    //cout << "printVector done." << endl;
+    list.printVector();
+    cout << "printVector done." << endl;
 
     //initializes the grid
     grid grid;
@@ -39,7 +39,7 @@ void findMatches()
                 {
                     l = 1;
 
-                    //following if statements handle the edge cases
+                    //following if statements handle the general edge cases
                     if(i - l < 0)
                     {
                         iminus1 = (grid.gridMatrix.rows()+i) - l;
@@ -68,7 +68,11 @@ void findMatches()
                         jplus1 = j + l;
                     }
 
-                    //horizontal positive side
+                    //the following while statements are used so that
+                    //finding words is limited to one direction
+                    //i.e. a word can't be made be going down one then diagonal up, etc.
+
+                    //limits horizontal positive side
                     while(grid.gridMatrix[i][jplus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -85,7 +89,7 @@ void findMatches()
 
                     l = 1;
 
-                    //horizontal negative side
+                    //limits horizontal negative side
                     while(grid.gridMatrix[i][jminus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -103,7 +107,7 @@ void findMatches()
 
                     l = 1;
 
-                    //vertical positive side
+                    //limits vertical positive side
                     while(grid.gridMatrix[iminus1][j] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -119,11 +123,10 @@ void findMatches()
 
                     l = 1;
 
-                    //vertical negative side
+                    //limits vertical negative side
                     while(grid.gridMatrix[iplus1][j] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
-                            //cout << "i: " << i << "j: " << j << endl;
                             break;
                         }
                         l++;
@@ -136,7 +139,7 @@ void findMatches()
 
                     l = 1;
 
-                    //diagonal 1
+                    //limits diagonal 1
                     while(grid.gridMatrix[iminus1][jminus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -158,7 +161,7 @@ void findMatches()
 
                     l = 1;
 
-                    //diagonal 2
+                    //limits diagonal 2
                     while(grid.gridMatrix[iplus1][jplus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -180,7 +183,7 @@ void findMatches()
 
                     l = 1;
 
-                    //diagonal 3
+                    //limits diagonal 3
                     while(grid.gridMatrix[iplus1][jminus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -203,7 +206,7 @@ void findMatches()
 
                     l = 1;
 
-                    //diagonal 4
+                    //limits diagonal 4
                     while(grid.gridMatrix[iminus1][jplus1] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
@@ -227,6 +230,7 @@ void findMatches()
         }
     }
 
+    //prints out the vector of found words
     for (int i=0; i < wordsFound.size(); i++)
         std::cout << wordsFound.at(i) << ' ';
 

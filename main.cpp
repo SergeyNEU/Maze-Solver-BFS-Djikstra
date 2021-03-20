@@ -1,8 +1,7 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
  * Project 3, Part A
- * ---
- * ---
+ * Main file which runs the findMatches() program
  */
 
 #include "findMatches.h"
@@ -14,17 +13,5 @@ using namespace std;
 int main()
 {
     findMatches();
-    /*cout << "findMatches done." << endl;
-    dictionary test;
-    cout << "dictionary test done." << endl;
-
-
-    if(test.wordLookup("parry"))
-        cout << "WORD FOUND!";
-
-
-    grid test2;
-    test2.outputGrid();
-*/
     return 0;
 }
