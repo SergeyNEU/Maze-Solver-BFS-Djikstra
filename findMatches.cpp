@@ -15,8 +15,8 @@ void findMatches()
     cout << "findMatches function initiated." << endl;
     dictionary list;
     cout << "dictionary input done done." << endl;
-    list.printVector();
-    cout << "printVector done." << endl;
+    //list.printVector();
+    //cout << "printVector done." << endl;
 
     //initializes the grid
     grid grid;
@@ -75,23 +75,6 @@ void findMatches()
                             break;
                         }
                         l++;
-                        if (i - l < 0) {
-                            iminus1 = (grid.gridMatrix.rows() + i) - l;
-                        } else {
-                            iminus1 = i - l;
-                        }
-
-                        if (j - l < 0) {
-                            jminus1 = (grid.gridMatrix.cols() + j) - l;
-                        } else {
-                            jminus1 = j - l;
-                        }
-
-                        if (i + l > grid.gridMatrix.rows() - 1) {
-                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        } else {
-                            iplus1 = i + l;
-                        }
 
                         if (j + l > grid.gridMatrix.cols() - 1) {
                             jplus1 = -(grid.gridMatrix.cols() - j) + l;
@@ -109,11 +92,6 @@ void findMatches()
                             break;
                         }
                         l++;
-                        if (i - l < 0) {
-                            iminus1 = (grid.gridMatrix.rows() + i) - l;
-                        } else {
-                            iminus1 = i - l;
-                        }
 
                         if (j - l < 0) {
                             jminus1 = (grid.gridMatrix.cols() + j) - l;
@@ -121,22 +99,12 @@ void findMatches()
                             jminus1 = j - l;
                         }
 
-                        if (i + l > grid.gridMatrix.rows() - 1) {
-                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        } else {
-                            iplus1 = i + l;
-                        }
-
-                        if (j + l > grid.gridMatrix.cols() - 1) {
-                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
-                        } else {
-                            jplus1 = j + l;
-                        }
-
                     }
+
+                    l = 1;
 
                     //vertical positive side
-                    while(grid.gridMatrix[i][iminus1] == list.words[k][l]) {
+                    while(grid.gridMatrix[iminus1][j] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
                             break;
@@ -147,59 +115,26 @@ void findMatches()
                         } else {
                             iminus1 = i - l;
                         }
-
-                        if (j - l < 0) {
-                            jminus1 = (grid.gridMatrix.cols() + j) - l;
-                        } else {
-                            jminus1 = j - l;
-                        }
-
-                        if (i + l > grid.gridMatrix.rows() - 1) {
-                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        } else {
-                            iplus1 = i + l;
-                        }
-
-                        if (j + l > grid.gridMatrix.cols() - 1) {
-                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
-                        } else {
-                            jplus1 = j + l;
-                        }
-
                     }
+
+                    l = 1;
 
                     //vertical negative side
-                    while(grid.gridMatrix[i][iplus1] == list.words[k][l]) {
+                    while(grid.gridMatrix[iplus1][j] == list.words[k][l]) {
                         if (l == list.words[k].size() - 1) {
                             wordsFound.push_back(list.words[k]);
+                            //cout << "i: " << i << "j: " << j << endl;
                             break;
                         }
                         l++;
-                        if (i - l < 0) {
-                            iminus1 = (grid.gridMatrix.rows() + i) - l;
-                        } else {
-                            iminus1 = i - l;
-                        }
-
-                        if (j - l < 0) {
-                            jminus1 = (grid.gridMatrix.cols() + j) - l;
-                        } else {
-                            jminus1 = j - l;
-                        }
-
                         if (i + l > grid.gridMatrix.rows() - 1) {
                             iplus1 = -(grid.gridMatrix.rows() - i) + l;
                         } else {
                             iplus1 = i + l;
                         }
-
-                        if (j + l > grid.gridMatrix.cols() - 1) {
-                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
-                        } else {
-                            jplus1 = j + l;
-                        }
-
                     }
+
+                    l = 1;
 
                     //diagonal 1
                     while(grid.gridMatrix[iminus1][jminus1] == list.words[k][l]) {
@@ -219,20 +154,9 @@ void findMatches()
                         } else {
                             jminus1 = j - l;
                         }
-
-                        if (i + l > grid.gridMatrix.rows() - 1) {
-                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        } else {
-                            iplus1 = i + l;
-                        }
-
-                        if (j + l > grid.gridMatrix.cols() - 1) {
-                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
-                        } else {
-                            jplus1 = j + l;
-                        }
-
                     }
+
+                    l = 1;
 
                     //diagonal 2
                     while(grid.gridMatrix[iplus1][jplus1] == list.words[k][l]) {
@@ -241,18 +165,6 @@ void findMatches()
                             break;
                         }
                         l++;
-                        if (i - l < 0) {
-                            iminus1 = (grid.gridMatrix.rows() + i) - l;
-                        } else {
-                            iminus1 = i - l;
-                        }
-
-                        if (j - l < 0) {
-                            jminus1 = (grid.gridMatrix.cols() + j) - l;
-                        } else {
-                            jminus1 = j - l;
-                        }
-
                         if (i + l > grid.gridMatrix.rows() - 1) {
                             iplus1 = -(grid.gridMatrix.rows() - i) + l;
                         } else {
@@ -264,8 +176,9 @@ void findMatches()
                         } else {
                             jplus1 = j + l;
                         }
-
                     }
+
+                    l = 1;
 
                     //diagonal 3
                     while(grid.gridMatrix[iplus1][jminus1] == list.words[k][l]) {
@@ -274,11 +187,6 @@ void findMatches()
                             break;
                         }
                         l++;
-                        if (i - l < 0) {
-                            iminus1 = (grid.gridMatrix.rows() + i) - l;
-                        } else {
-                            iminus1 = i - l;
-                        }
 
                         if (j - l < 0) {
                             jminus1 = (grid.gridMatrix.cols() + j) - l;
@@ -291,14 +199,9 @@ void findMatches()
                         } else {
                             iplus1 = i + l;
                         }
-
-                        if (j + l > grid.gridMatrix.cols() - 1) {
-                            jplus1 = -(grid.gridMatrix.cols() - j) + l;
-                        } else {
-                            jplus1 = j + l;
-                        }
-
                     }
+
+                    l = 1;
 
                     //diagonal 4
                     while(grid.gridMatrix[iminus1][jplus1] == list.words[k][l]) {
@@ -313,29 +216,14 @@ void findMatches()
                             iminus1 = i - l;
                         }
 
-                        if (j - l < 0) {
-                            jminus1 = (grid.gridMatrix.cols() + j) - l;
-                        } else {
-                            jminus1 = j - l;
-                        }
-
-                        if (i + l > grid.gridMatrix.rows() - 1) {
-                            iplus1 = -(grid.gridMatrix.rows() - i) + l;
-                        } else {
-                            iplus1 = i + l;
-                        }
-
                         if (j + l > grid.gridMatrix.cols() - 1) {
                             jplus1 = -(grid.gridMatrix.cols() - j) + l;
                         } else {
                             jplus1 = j + l;
                         }
-
                     }
                 }
-
             }
-
         }
     }
 

@@ -19,7 +19,7 @@ void dictionary::readWords() {
     //cout << "Type in the file name to read in: " << endl;
     //getline(cin, fileEntered);
 
-    file.open("dictionary2.txt");
+    file.open("dictionary.txt");
     if (!file.is_open()){
         cout << "Cannot open file!" << endl;
         return;
@@ -31,9 +31,6 @@ void dictionary::readWords() {
         words.push_back(word);
     }
 
-    //Tests
-    //cout << words[0] << endl;
-    //cout << words[3] << endl;
 }
 
 void dictionary::printVector() {
