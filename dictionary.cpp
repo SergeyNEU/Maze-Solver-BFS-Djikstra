@@ -117,3 +117,55 @@ bool dictionary::binarySearch(int beginning, int end, string inputWord)
         }
         return false;
 }
+
+void dictionary::quicksort(vector<string> words, string low, string high)
+{
+    readWords();
+
+    if(low < high)
+    {
+        string pivotIndex = separate(words, low, high);
+        quicksort(words, low, pivotIndex - 1);
+        quicksort(words, pivotIndex, high);
+    }
+}
+
+string dictionary::separate(vector<string> words, string low, string high)
+{
+    int pivotIndex = low + (high - low) / 2;
+    string pivotWord = words[pivotIndex];
+    int i = low, j = high;
+    int temp;
+    while(i <= j) {
+        while(words[i].compare(pivotWord) != 0) {
+            i++;
+        }
+        while(words[j].compare(pivotWord) = 0) {
+            j--;
+        }
+        if(i <= j) {
+            temp = words[i];
+            words[i] = words[j];
+            words[j] = temp;
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+
+/*
+int dictionary::indexOf(vector<string> words, string word)
+{
+
+}
+ */
+
+void dictionary::dictionaryHeapSort()
+{
+    readWords();
+    //convert readWords vector into an array
+
+    heap::heapSort(wordsArr, words.size());
+}
+

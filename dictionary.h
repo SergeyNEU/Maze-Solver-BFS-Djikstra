@@ -8,7 +8,9 @@
 #include "iostream"
 #include "fstream"
 #include <vector>
+#include <string>
 #include <algorithm>
+#include "heap.h"
 
 #ifndef DICTIONARY_H
 #define DICTIONARY_H
@@ -26,6 +28,13 @@ public:
     void swap(vector<string>& v, int x, int y);
     void quicksort(vector<string> &vec, int L, int R);
 
+
+    void quicksort();
+    string separate(vector<string> words, string low, string high);
+    void swap(string* word1, string* word2);
+    int indexOf(vector<string> words, string word);
+
+    void dictionaryHeapSort();
 
     vector<string> words;
 
