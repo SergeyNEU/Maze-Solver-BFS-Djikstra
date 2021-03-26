@@ -11,7 +11,7 @@ dictionary::dictionary()
 {
     readWords();
     //sortWords();
-    quicksort(words, 0, words.size());
+    //quicksort(words, 0, words.size());
     dictionaryHeapSort();
 }
 
@@ -128,7 +128,7 @@ int dictionary::indexOf(vector<string> words, string word)
 
 void dictionary::dictionaryHeapSort()
 {
-    heap<string> heaptree;
+    heapify heaptree(words);
     heaptree.buildMaxHeap(words, words.size());
     heaptree.heapsort(words, words.size());
 }

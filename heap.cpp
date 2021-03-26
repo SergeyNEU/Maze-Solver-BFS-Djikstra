@@ -1,42 +1,48 @@
 #include "heap.h"
+#include <string>
 
-template <class T>
-int heap<T>::parent(int n)
+//template <class T>
+heapify::heapify(vector<string> &item){
+    list = item;
+};
+
+//template <class T>
+int heapify::parent(int n)
 {
     return floor(n/2);
 }
 
-template <class T>
-int heap<T>::left(int n)
+//template <class T>
+int heapify::left(int n)
 {
     return 2*n;
 }
 
-template <class T>
-int heap<T>::right(int n)
+//template <class T>
+int heapify::right(int n)
 {
     return (2*n) + 1;
 }
 
-template <class T>
-int heap<T>::getItem(int n)
+//template <class T>
+int heapify::getItem(int n)
 {
     //return heap<string>.list[n];
     return 0;
 }
 
-template <class T>
-void heap<T>::intitializeMaxHeap(){
+//template <class T>
+void heapify::intitializeMaxHeap(){
 
 }
 
-template <class T>
-void heap<T>::maxHeapify(vector<T> &arr, int i, int length, int heapsize)
+//template <class T>
+void heapify::maxHeapify(vector<string> &arr, int i, int length, int heapsize)
 {
     int l = 2*i;
     int r = 2*i+1;
     int largest;
-    int temp;
+    string temp;
 
     if (l<=heapsize && arr[l] > arr[i])
     {
@@ -57,12 +63,12 @@ void heap<T>::maxHeapify(vector<T> &arr, int i, int length, int heapsize)
         temp = arr[largest];
         arr[largest] = arr[i];
         arr[i] = temp;
-        MAXHEAPIFY(arr, largest, length, heapsize);
+        maxHeapify(arr, largest, length, heapsize);
     }
 }
 
-template <class T>
-void heap<T>::buildMaxHeap(vector<T> &arr, int n)
+//template <class T>
+void heapify::buildMaxHeap(vector<string> &arr, int n)
 {
     int heapsize = n;
     int i;
@@ -72,13 +78,14 @@ void heap<T>::buildMaxHeap(vector<T> &arr, int n)
     }
 }
 
-template <class T>
-void heap<T>::heapsort(vector<T> &arr, int length)
+//template <class T>
+void heapify::heapsort(vector<string> &arr, int length)
 {
-    int i, temp;
+    int i;
+    string temp;
     int heapsize = length;
 
-    BuildMaxHeap(arr, length);
+    buildMaxHeap(arr, length);
 
     cout << "Constructed heap: ";
     //read words
@@ -89,6 +96,6 @@ void heap<T>::heapsort(vector<T> &arr, int length)
         arr[i] = arr[1];
         arr[1] = temp;
         heapsize = heapsize - 1;
-        MAXHEAPIFY(arr, 1, length, heapsize);
+        maxHeapify(arr, 1, length, heapsize);
     }
 }

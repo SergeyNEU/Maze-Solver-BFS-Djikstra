@@ -8,11 +8,13 @@
 #include "dictionary.h"
 #include "heap.h"
 #include "grid.h"
+#include <string>
 
 using namespace std;
 
 int main()
 {
+
     findMatches();
     return 0;
 }

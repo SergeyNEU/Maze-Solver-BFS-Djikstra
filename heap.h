@@ -1,28 +1,30 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
 
 #ifndef HEAP_H
 #define HEAP_H
 
 using namespace std;
 
-template <class T>
-class heap
+class heapify
 {
 public:
-    vector<T> list;
+    vector<string> list;
 
     int parent(int n);
     int left(int n);
     int right(int n);
     int getItem(int n);
 
-    void intitializeMaxHeap();
-    void maxHeapify(vector<T> &arr, int i, int length, int heapsize);
-    void buildMaxHeap(vector<T> &arr, int n);
+    heapify(vector<string> &arr);
 
-    void heapsort(vector<T> &arr, int length);
+    void intitializeMaxHeap();
+    void maxHeapify(vector<string> &arr, int i, int length, int heapsize);
+    void buildMaxHeap(vector<string> &arr, int n);
+
+    void heapsort(vector<string> &arr, int length);
 private:
 };
 

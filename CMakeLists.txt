@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_HEADERS
         heap.h
+        grid.h
         d_matrix.h
         dictionary.h
         findMatches.h
