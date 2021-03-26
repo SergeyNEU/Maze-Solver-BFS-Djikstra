@@ -23,6 +23,9 @@ public:
     void printVector();
     void sortWords();
     bool binarySearch(int beginning, int end, string inputWord);
+    void swap(vector<string>& v, int x, int y);
+    void quicksort(vector<string> &vec, int L, int R);
+
 
     vector<string> words;
 
