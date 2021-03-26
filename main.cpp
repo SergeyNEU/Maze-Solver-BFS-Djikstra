@@ -6,6 +6,7 @@
 
 #include "findMatches.h"
 #include "dictionary.h"
+#include "heap.h"
 #include "grid.h"
 
 using namespace std;

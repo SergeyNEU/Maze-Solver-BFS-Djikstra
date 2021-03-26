@@ -1,28 +1,37 @@
 #include "heap.h"
 
-int parent(int n)
+template <class T>
+int heap<T>::parent(int n)
 {
     return floor(n/2);
 }
 
-int left(int n)
+template <class T>
+int heap<T>::left(int n)
 {
     return 2*n;
 }
 
-int right(int n)
+template <class T>
+int heap<T>::right(int n)
 {
     return (2*n) + 1;
 }
 
-int getItem(int n)
+template <class T>
+int heap<T>::getItem(int n)
 {
     //return heap<string>.list[n];
     return 0;
 }
 
-void intitializeMaxHeap();
-void MAXHEAPIFY(int arr[], int i, int length, int heapsize)
+template <class T>
+void heap<T>::intitializeMaxHeap(){
+
+}
+
+template <class T>
+void heap<T>::maxHeapify(vector<T> &arr, int i, int length, int heapsize)
 {
     int l = 2*i;
     int r = 2*i+1;
@@ -51,17 +60,20 @@ void MAXHEAPIFY(int arr[], int i, int length, int heapsize)
         MAXHEAPIFY(arr, largest, length, heapsize);
     }
 }
-void BuildMaxHeap(int arr[], int n)
+
+template <class T>
+void heap<T>::buildMaxHeap(vector<T> &arr, int n)
 {
     int heapsize = n;
     int i;
     for(i= (n/2); i>=1; i--)
     {
-        MAXHEAPIFY(arr, i, n, heapsize);
+        maxHeapify(arr, i, n, heapsize);
     }
 }
 
-void heapsort(int arr[], int length)
+template <class T>
+void heap<T>::heapsort(vector<T> &arr, int length)
 {
     int i, temp;
     int heapsize = length;
@@ -79,5 +91,4 @@ void heapsort(int arr[], int length)
         heapsize = heapsize - 1;
         MAXHEAPIFY(arr, 1, length, heapsize);
     }
-
 }

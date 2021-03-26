@@ -1,14 +1,13 @@
-#ifndef HEAP_H
-#define HEAP_H
-
 #include <iostream>
 #include <vector>
 #include <cmath>
 
+#ifndef HEAP_H
+#define HEAP_H
+
 using namespace std;
 
 template <class T>
-
 class heap
 {
 public:
@@ -20,10 +19,10 @@ public:
     int getItem(int n);
 
     void intitializeMaxHeap();
-    void MAXHEAPIFY(int arr[], int i, int length, int heapsize);
-    void BuildMaxHeap(int arr[], int n);
+    void maxHeapify(vector<T> &arr, int i, int length, int heapsize);
+    void buildMaxHeap(vector<T> &arr, int n);
 
-    void heapsort(int arr[], int length);
+    void heapsort(vector<T> &arr, int length);
 private:
 };
 
