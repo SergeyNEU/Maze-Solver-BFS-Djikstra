@@ -1,3 +1,9 @@
+/*
+ * By: Sergey Petrushkevich & Luke Ackerman
+ * Project 3, Part B
+ * Heap Class function definition
+ */
+
 #include "heap.h"
 #include <string>
 

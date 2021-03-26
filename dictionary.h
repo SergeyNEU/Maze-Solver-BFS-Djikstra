@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part A
+ * Project 3, Part B
  * Creates the dictionary class which stores all the words.
  */
 

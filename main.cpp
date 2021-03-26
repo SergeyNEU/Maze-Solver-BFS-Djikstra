@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part A
+ * Project 3, Part B
  * Main file which runs the findMatches() program
  */
 

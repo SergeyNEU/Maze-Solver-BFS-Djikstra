@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part A
+ * Project 3, Part B
  * Code for the global findMatches() function
  */
 

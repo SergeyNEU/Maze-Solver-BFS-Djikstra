@@ -1,3 +1,9 @@
+/*
+ * By: Sergey Petrushkevich & Luke Ackerman
+ * Project 3, Part B
+ * Creates the heap class.
+ */
+
 #include <iostream>
 #include <vector>
 #include <cmath>
