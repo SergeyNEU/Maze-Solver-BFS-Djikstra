@@ -9,10 +9,13 @@
 using namespace std;
 
 void search(int n)
+//global search(int) function
 {
+    //initialize dictionary and grid
     dictionary d;
     grid g;
 
+    //gets size of dictionary
     int size = d.words.size();
 
     if(n == 1)
@@ -32,6 +35,7 @@ void search(int n)
         cout << "Invalid integer input." << endl;
     }
 
+    //outputs dictionary and finds words in word search
     d.printVector();
     ::findMatches(d, g);
 }

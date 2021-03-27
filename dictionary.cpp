@@ -10,9 +10,6 @@ dictionary::dictionary()
 // Reads in words from dictionary.txt and sorts them once a new dictionary object is called.
 {
     readWords();
-    //sortWords();
-    //quicksort(words, 0, words.size());
-    //dictionaryHeapSort();
 }
 
 void dictionary::readWords()
