@@ -17,6 +17,6 @@
 
 using namespace std;
 
-void findMatches();
+void findMatches(dictionary d, grid g);
 
 #endif //FINDMATCHES_H

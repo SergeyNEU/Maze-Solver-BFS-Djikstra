@@ -8,15 +8,14 @@
 
 using namespace std;
 
-void findMatches()
+void findMatches(dictionary d, grid g)
 //global findMatches() function
 {
     //initializing the dictionary and list
-    dictionary list;
-    list.printVector();
+    dictionary list = d;
 
     //initializes the grid
-    grid grid;
+    grid grid = g;
     grid.outputGrid();
 
     //declare variables used in the function

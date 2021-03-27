@@ -12,7 +12,7 @@ dictionary::dictionary()
     readWords();
     //sortWords();
     //quicksort(words, 0, words.size());
-    dictionaryHeapSort();
+    //dictionaryHeapSort();
 }
 
 void dictionary::readWords()

@@ -16,6 +16,6 @@ set(PROJECT_SOURCES
         grid.cpp
         dictionary.cpp
         findMatches.cpp
-        )
+        search.cpp search.h)
 
 add_executable(untitled1 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
