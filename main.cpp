@@ -16,7 +16,7 @@ int main()
 {
     ifstream fin;
     //used to read board inputs from a txt file
-    fin.open("stest.txt");
+    fin.open("sudoku.txt");
 
     int boardNum = 0;
     //count the number of boards solved
