@@ -4,18 +4,11 @@ project(coding_IDE)
 set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_HEADERS
-        heap.h
-        grid.h
-        d_matrix.h
-        dictionary.h
-        findMatches.h
+        board.h
         )
 set(PROJECT_SOURCES
         main.cpp
-        heap.cpp
-        grid.cpp
-        dictionary.cpp
-        findMatches.cpp
-        search.cpp search.h)
+        board.cpp
+)
 
 add_executable(untitled1 ${PROJECT_SOURCES} ${PROJECT_HEADERS})
