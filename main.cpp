@@ -14,13 +14,15 @@ using namespace std;
 
 int main()
 {
+    int boardNum = 0;
+    int numRecursions = 0;
     ifstream fin;
     //used to read board inputs from a txt file
-    fin.open("sudoku.txt");
+    fin.open("stest.txt");
 
-    int boardNum = 0;
+
     //count the number of boards solved
-    int numRecursions = 0;
+
     //we count the number of recurssion called in solving all the sudoku puzzles
 
     board b;
@@ -29,8 +31,17 @@ int main()
         boardNum++;
         cout<< endl << "----------- Board: " <<boardNum<< " -----------";
         b.initialize(fin);
+        b.Solve();
         if (b.solvedCheck())
-            cout <<    "----------- BOARD SOLVED -----------" << endl;
+            cout <<endl<<    "--------- BOARD SOLVED ---------";
+        b.printBoard();
+        b.printRowConflict();
+        b.printSquConflict();
+        b.printColConflict();
+        numRecursions += b.getRecursions();
     }
+
+    cout << "Average recursions per board: " << numRecursions/boardNum;
+
     return 0;
 }

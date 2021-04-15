@@ -24,6 +24,7 @@ public:
     void initialize(ifstream &fin);
     void clear();
     void updateConflicts();
+    void updateConflicts(int row, int column, int integer);
     void printBoard();
     void printRowConflict();
     void printColConflict();
@@ -31,9 +32,12 @@ public:
     bool solvedCheck();
     void fillaCell(int i, int j, int value);
     void resetaCell(int i, int j);
-    void firstBlankCell(int &fi, int &fj);
+    bool Solve();
+    bool Recursive_Solve(int r, int c);
+    int getRecursions();
 
 private:
+    int recursionCounter;
     int SodukuBoard[9][9];
     vector<vector<bool> > RowConflicts;
     vector<vector<bool> > ColConflicts;
