@@ -1,5 +1,5 @@
 //
-// Project 4 Part A
+// Project 4 Part B
 // By Sergey Petrushkevich and Luke Ackerman
 // Function class for the sudoku board.
 //
@@ -15,7 +15,7 @@
 
 using namespace std;
 
-int squareNumber(int i, int j);
+int squareNumber(int c, int r);
 
 class board
 {
@@ -25,6 +25,7 @@ public:
     void clear();
     void updateConflicts();
     void updateConflicts(int row, int column, int integer);
+    int squareFinder(int r,int c);
     void printBoard();
     void printRowConflict();
     void printColConflict();

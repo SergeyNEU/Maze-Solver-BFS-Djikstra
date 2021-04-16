@@ -1,5 +1,5 @@
 //
-// Project 4 Part A
+// Project 4 Part B
 // By Sergey Petrushkevich and Luke Ackerman
 // Based partly on code by Lily Su - Reads and processes sudoku puzzles.
 //
@@ -18,7 +18,7 @@ int main()
     int numRecursions = 0;
     ifstream fin;
     //used to read board inputs from a txt file
-    fin.open("stest.txt");
+    fin.open("sudoku.txt");
 
 
     //count the number of boards solved
@@ -32,12 +32,10 @@ int main()
         cout<< endl << "----------- Board: " <<boardNum<< " -----------";
         b.initialize(fin);
         b.Solve();
-        if (b.solvedCheck())
+        if (b.solvedCheck()){
             cout <<endl<<    "--------- BOARD SOLVED ---------";
-        b.printBoard();
-        b.printRowConflict();
-        b.printSquConflict();
-        b.printColConflict();
+            b.printBoard();
+        }
         numRecursions += b.getRecursions();
     }
 

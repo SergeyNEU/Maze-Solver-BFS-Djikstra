@@ -1,5 +1,5 @@
 //
-// Project 4 Part A
+// Project 4 Part B
 // By Sergey Petrushkevich and Luke Ackerman
 // Function descriptions for the sudoku board class.
 //
@@ -201,13 +201,19 @@ void board::updateConflicts()
 
 }
 
-/*void board::updateConflicts(int row, int column)
+void board::updateConflicts(int row, int column, int value)
 {
-    int i = row, j = column, k;
+    int i, j, k;
 
-    RowConflicts[i][j] = false;
-    ColConflicts[i][j] = false;
-    SquConflicts[i][j] = false;
+    for(i =0; i<9; i++)
+    {
+        for(j=0; j<9; j++)
+        {
+            RowConflicts[i][j] = false;
+            ColConflicts[i][j] = false;
+            SquConflicts[i][j] = false;
+        }
+    }
 
     //update conflict vectors
     for(i=0; i<9; i++)
@@ -256,11 +262,12 @@ void board::updateConflicts()
         }
     }
 
+    //printBoard();
     //printColConflict();
     //printRowConflict();
     //printSquConflict();
 
-}*/
+}
 
 int squareNumber(int i, int j)
 // return the square number of cell i,j (counting from left to right, top to bottom)
@@ -383,7 +390,7 @@ void board::fillaCell(int r, int c, int value)
 // Fills a cell in.
 {
     SodukuBoard[r][c] = value;
-    updateConflicts();
+    updateConflicts(r, c, value);
 }
 
 void board::resetaCell(int r, int c)
@@ -404,6 +411,7 @@ bool board::Recursive_Solve(int r, int c)
     int squareNum;
     int i;
     recursionCounter++;
+    int interrupt = 0;
 
     // Skip all non-dash characters - Goes from C0R0 to C1R0... C9R0 and then to C0R1
     while (r < 9 && SodukuBoard[r][c] != -1) {
@@ -419,6 +427,42 @@ bool board::Recursive_Solve(int r, int c)
         return true;
     }
 
+    squareNum = squareFinder(r,c);
+
+    /* Try each value.  If successful, then return true. */
+    for (i = 1; i <= 9; i++) {
+        interrupt = 0;
+
+        if ((ColConflicts[c][i-1] == 1) || (RowConflicts[r][i-1] == 1) || (SquConflicts[squareNum][i-1] == 1))
+        {
+            //if number already exists / in conflict, then skip and test other numbers.
+            interrupt = 1;
+            if(solvedCheck()){
+                break;
+            }
+        }
+
+        if(interrupt != 1)
+        {
+            fillaCell(r,c,i);
+            Recursive_Solve(r, c);
+        }
+    }
+
+    if(solvedCheck()){
+        return true;
+    }
+    /* If unsuccessful, reset the element and return false. */
+    resetaCell(r,c);
+    return false;
+}
+
+int board::getRecursions() {
+    return recursionCounter;
+}
+
+int board::squareFinder(int r, int c) {
+    int squareNum;
     if(c >= 0 && c <=2){
         if(r >= 0 && r <=2)
             squareNum = 0;
@@ -441,44 +485,6 @@ bool board::Recursive_Solve(int r, int c)
         else if(r >= 6 && r <=8)
             squareNum = 8;
     }
-
-    int interrupt = 0;
-
-    /* Try each value.  If successful, then return true. */
-    for (i = 1; i <= 9; i++) {
-        interrupt = 0;
-
-        if(solvedCheck()){
-            break;
-        }
-
-        if ((ColConflicts[c][i-1] == 1) || (RowConflicts[r][i-1] == 1) || (SquConflicts[squareNum][i-1] == 1))
-        {
-            //if number already exists / in conflict, then skip and test other numbers.
-            interrupt = 1;
-        }
-
-        if(interrupt != 1)
-        {
-            fillaCell(r,c,i);
-            Recursive_Solve(r, c);
-        }
-
-
-    }
-
-    if(solvedCheck()){
-        return true;
-    }
-
-    /* If unsuccessful, reset the element and return false. */
-    //cout << "Going back a step... setting -1 to c = " << c+1 << " | r = " << r+1 << endl;
-
-    resetaCell(r,c);
-
-    return false;
+    return squareNum;
 }
 
-int board::getRecursions() {
-    return recursionCounter;
-}
