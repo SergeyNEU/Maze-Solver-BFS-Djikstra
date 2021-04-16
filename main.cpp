@@ -40,6 +40,7 @@ int main()
     }
 
     cout << "Average recursions per board: " << numRecursions/boardNum;
+    cout << "Total recursions: " << numRecursions;
 
     return 0;
 }

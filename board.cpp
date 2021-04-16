@@ -135,6 +135,7 @@ void board::initialize(ifstream &fin)
 }
 
 void board::updateConflicts()
+// Updates the conflict boards
 {
     int i, j, k;
 
@@ -194,11 +195,6 @@ void board::updateConflicts()
             }
         }
     }
-
-    //printColConflict();
-    //printRowConflict();
-    //printSquConflict();
-
 }
 
 void board::updateConflicts(int row, int column, int value)
@@ -216,57 +212,46 @@ void board::updateConflicts(int row, int column, int value)
     }
 
     //update conflict vectors
-    for(i=0; i<9; i++)
-    {
+    for(i=0; i<9; i++) {
         //update the i-th row conflict vector
-        for(j=0; j<9; j++)
+        for (j = 0; j < 9; j++)
             //loop through digits from 1 to 9
         {
-            for(k=0; k<9; k++)
+            for (k = 0; k < 9; k++)
                 //loop through the columns in row i -- checking whether digit j+1
                 //is in the i-th row
             {
-                if(SodukuBoard[i][k] == j+1)
-                {
+                if (SodukuBoard[i][k] == j + 1) {
                     RowConflicts[i][j] = true;
                 }
             }
         }
 
         //update the i-th column conflict vector
-        for(j=0; j<9; j++)
+        for (j = 0; j < 9; j++)
             //loop through digits from 1 to 9
         {
-            for(k=0; k<9; k++)
+            for (k = 0; k < 9; k++)
                 //loop through the rows in column i -- checking whether digit j+1
                 //is in the i-th column
             {
-                if(SodukuBoard[k][i] == j+1)
-                {
+                if (SodukuBoard[k][i] == j + 1) {
                     ColConflicts[i][j] = true;
                 }
             }
         }
 
         //update the i-th square conflict vector
-        for(j=0; j<9; j++)
+        for (j = 0; j < 9; j++)
             //loop through digits from 1 to 9
         {
-            for(k=0; k<9; k++)
-            {
-                if(SodukuBoard[i][k] == j+1)
-                {
-                    SquConflicts[squareNumber(i,k)-1][j] = true;
+            for (k = 0; k < 9; k++) {
+                if (SodukuBoard[i][k] == j + 1) {
+                    SquConflicts[squareNumber(i, k) - 1][j] = true;
                 }
             }
         }
     }
-
-    //printBoard();
-    //printColConflict();
-    //printRowConflict();
-    //printSquConflict();
-
 }
 
 int squareNumber(int i, int j)
@@ -276,6 +261,7 @@ int squareNumber(int i, int j)
 }
 
 void board::printBoard()
+//Prints the sudoku board
 {
     //print the board
     cout << endl;
@@ -303,6 +289,8 @@ void board::printBoard()
 }
 
 void board::printRowConflict() {
+    // Prints out the row conflicts
+
     cout<< endl << "----- Row conflict vectors -----"<<endl;
     for (int i =0; i<9; i++)
     {
@@ -323,6 +311,8 @@ void board::printRowConflict() {
 }
 
 void board::printColConflict() {
+    //Prints out the column conflicts
+
     cout<<endl<<"---- Column conflict vectors ---"<<endl;
     for (int i =0; i<9; i++)
     {
@@ -343,6 +333,8 @@ void board::printColConflict() {
 }
 
 void board::printSquConflict() {
+    // Prints out the square conflicts
+
     cout<<endl<< "---- Square conflict vectors ---"<<endl;
     for (int i =0; i<9; i++)
     {
@@ -401,12 +393,14 @@ void board::resetaCell(int r, int c)
 }
 
 bool board::Solve()
+// Runs Recursive_Solve
 {
     return Recursive_Solve(0, 0);
 }
 
 
 bool board::Recursive_Solve(int r, int c)
+// Recursively solves a sudoku board
 {
     int squareNum;
     int i;
@@ -458,10 +452,12 @@ bool board::Recursive_Solve(int r, int c)
 }
 
 int board::getRecursions() {
+    //Returns the number of recursions
     return recursionCounter;
 }
 
 int board::squareFinder(int r, int c) {
+    //Returns a square on the board based on inputted integers
     int squareNum;
     if(c >= 0 && c <=2){
         if(r >= 0 && r <=2)
