@@ -24,7 +24,7 @@ void grid::readGrid(){
     cout << "Type in the file name to read in: " << endl;
     //getline(cin, fileEntered);
 
-    fileEntered = "maze1.txt";
+    fileEntered = "maze3.txt";
 
     file.open(fileEntered);
     if (!file.is_open()){
@@ -80,6 +80,16 @@ void grid::LabelNodes() {
             if(gridMatrix[x][y] == 'O') {
                 gridMatrix[x][y] = amtNodes;
                 amtNodes++;
+            }
+        }
+    }
+}
+
+void grid::reformatGrid() {
+    for(int x = 0; x < rows; x++){
+        for(int y = 0; y < columns; y++){
+            if(gridMatrix[x][y] == 'X') {
+                gridMatrix[x][y] = (char)255;
             }
         }
     }

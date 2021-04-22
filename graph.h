@@ -24,14 +24,15 @@ using namespace std;
 class graph
 {
 private:
-    int amtNodes = 0;
+    int amtNodes;
 public:
-    matrix<char> gridMatrix;
+    matrix<int> graph;
+    matrix<int> pred;
+    matrix<int> distance;
+    matrix<int> cost;
+    matrix<int> visited;
 
-    grid();
-    void readGrid();
-    void outputGrid();
-    void findAmountNodes();
-    void LabelNodes();
+    void main();
+    void dijkstra();
 };
 #endif //GRAPH_H

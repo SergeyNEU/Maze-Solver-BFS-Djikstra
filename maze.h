@@ -28,12 +28,13 @@ public:
     int amtNodes = 0;
     int rows;
     int columns;
-    matrix<char> gridMatrix;
+    matrix<unsigned char> gridMatrix;
     grid();
     void readGrid();
     void outputGrid();
     void findAmountNodes();
     void LabelNodes();
     void resize(int r, int c);
+    void reformatGrid();
 };
 #endif //MAZE_H
