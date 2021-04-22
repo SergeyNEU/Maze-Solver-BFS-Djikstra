@@ -21,7 +21,7 @@ int distance1[max];
 int nodeBackwardCounter;
 
 
-void dijkstra(grid G[max][max],int n,int startnode) {
+void dijkstra(int G[max][max],int n,int startnode) {
     int cost[max][max];
     int visited[max],count,mindistance,nextnode,i,j;
 
@@ -84,9 +84,7 @@ int main()
 
     maze.LabelNodes();
 
-    grid graph;
-
-    graph.resize(maze.amtNodes, maze.amtNodes);
+    int graph[32][32];
 
     for(int x = 0; x < maze.amtNodes; x++){
         for(int y = 0; y < maze.amtNodes; y++){
