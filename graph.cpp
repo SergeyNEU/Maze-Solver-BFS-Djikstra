@@ -3,7 +3,7 @@
  * Project 3, Part B
  * Grid class function definitions.
  */
-
+/*
 #include "maze.h"
 
 grid::grid(){
@@ -11,20 +11,12 @@ grid::grid(){
     readGrid();
 }
 
-void grid::resize(int r, int c) {
-    rows = r;
-    columns = c;
-    gridMatrix.resize(r, c);
-}
-
 void grid::readGrid(){
     ifstream file;
 
     string fileEntered;
     cout << "Type in the file name to read in: " << endl;
-    //getline(cin, fileEntered);
-
-    fileEntered = "maze1.txt";
+    getline(cin, fileEntered);
 
     file.open(fileEntered);
     if (!file.is_open()){
@@ -84,3 +76,4 @@ void grid::LabelNodes() {
         }
     }
 }
+ */

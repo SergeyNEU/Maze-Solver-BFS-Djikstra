@@ -7,11 +7,13 @@ set(PROJECT_HEADERS
         maze.h
         d_matrix.h
         board.h
+        graph.h
         )
 set(PROJECT_SOURCES
         main.cpp
         maze.cpp
         board.cpp
+        graph.cpp
 )
 
 add_executable(untitled1 ${PROJECT_SOURCES} ${PROJECT_HEADERS})

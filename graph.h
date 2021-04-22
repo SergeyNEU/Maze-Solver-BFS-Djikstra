@@ -12,28 +12,26 @@
 #include "fstream"
 #include <vector>
 #include <algorithm>
-#include "d_matrix.h"
+#include "maze.h"
 
-#ifndef MAZE_H
-#define MAZE_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
 using namespace std;
 
 
 
-class grid
+class graph
 {
 private:
-public:
     int amtNodes = 0;
-    int rows;
-    int columns;
+public:
     matrix<char> gridMatrix;
+
     grid();
     void readGrid();
     void outputGrid();
     void findAmountNodes();
     void LabelNodes();
-    void resize(int r, int c);
 };
-#endif //MAZE_H
+#endif //GRAPH_H
