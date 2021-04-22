@@ -4,10 +4,13 @@ project(coding_IDE)
 set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_HEADERS
+        maze.h
+        d_matrix.h
         board.h
         )
 set(PROJECT_SOURCES
         main.cpp
+        maze.cpp
         board.cpp
 )
 
