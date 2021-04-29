@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part A
+ * Project 5
  * Grid class that stores the nxn grid.
  * Uses the given d_matrix.h class.
  */
@@ -19,11 +19,8 @@
 
 using namespace std;
 
-
-
 class grid
 {
-private:
 public:
     int amtNodes = 0;
     int rows;
@@ -32,7 +29,6 @@ public:
     grid();
     void readGrid();
     void outputGrid();
-    void findAmountNodes();
     void LabelNodes();
     void resize(int r, int c);
     void reformatGrid();

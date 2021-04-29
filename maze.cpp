@@ -1,6 +1,6 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part B
+ * Project 5
  * Grid class function definitions.
  */
 

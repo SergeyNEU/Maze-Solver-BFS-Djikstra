@@ -1,8 +1,8 @@
 /*
  * By: Sergey Petrushkevich & Luke Ackerman
- * Project 3, Part A
- * Grid class that stores the nxn grid.
- * Uses the given d_matrix.h class.
+ * Project 5
+ * This class contains two functions: Dijkstra and BFS. When the user selects either or, it runs this class and the
+ * appropriate functions. Uses the maze.h to support resizable matrices.
  */
 
 #include <cstdlib>
@@ -31,12 +31,12 @@ private:
     int amtNodes;
 public:
     matrix<int> graph;
-    matrix<int> pred;
-    matrix<int> distance;
-    matrix<int> cost;
-    matrix<int> visited;
+    matrix<int> predGrid;
+    matrix<int> distanceGrid;
+    matrix<int> costGrid;
+    matrix<int> visitedGrid;
 
-    void main();
+    void dijkstraMain();
     void dijkstra();
     void BFSearch();
 };
