@@ -24,7 +24,7 @@ void grid::readGrid(){
     cout << "Type in the file name to read in: " << endl;
     //getline(cin, fileEntered);
 
-    fileEntered = "maze3.txt";
+    fileEntered = "maze1.txt";
 
     file.open(fileEntered);
     if (!file.is_open()){

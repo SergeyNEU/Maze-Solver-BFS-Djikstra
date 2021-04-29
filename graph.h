@@ -19,7 +19,11 @@
 
 using namespace std;
 
-
+struct Point
+{
+    int x;
+    int y;
+};
 
 class graph
 {
@@ -34,5 +38,6 @@ public:
 
     void main();
     void dijkstra();
+    void BFSearch();
 };
 #endif //GRAPH_H

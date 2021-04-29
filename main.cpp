@@ -18,6 +18,7 @@ int main()
 {
 
     graph maze;
-    maze.main();
+    maze.BFSearch();
+    //maze.main();
     return 0;
 }
