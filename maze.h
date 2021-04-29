@@ -30,6 +30,7 @@ public:
     void readGrid();
     void outputGrid();
     void LabelNodes();
+    void findAmountNodes();
     void resize(int r, int c);
     void reformatGrid();
 };

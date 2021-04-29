@@ -10,8 +10,6 @@
 #include <bits/stdc++.h>
 #include "graph.h"
 
-#define ROW 7
-#define COL 10
 
 void graph::dijkstraMain() {
     grid maze;
@@ -182,18 +180,18 @@ void graph::dijkstra() {
 // A Data Structure for queue used in BFS
 struct queueNode
 {
-    Point pt;  // The cordinates of a cell
+    Point pt;  // The coordinates of a cell
     int dist;  // cell's distance of from the source
 };
 
 // check whether given cell (row, col) is a valid
 // cell or not.
-bool isValid(int row, int col)
+bool isValid(grid maze, int row, int col)
 {
     // return true if row number and column number
     // is in range
-    return (row >= 0) && (row < ROW) &&
-           (col >= 0) && (col < COL);
+    return (row >= 0) && (row < maze.rows) &&
+           (col >= 0) && (col < maze.columns);
 }
 
 // These arrays are used to get row and column
@@ -282,6 +280,16 @@ void graph::BFSearch() {
             }
         }
     }
+/*
+    for(int x = 0; x < amtNodes; x++) {
+        distanceGrid[0][x] = costGrid[0][x];
+        predGrid[0][x] = 0;
+        visitedGrid[0][x] = 0;
+    }
+    */
+
+    distanceGrid[0][0] = 0;
+    visitedGrid[0][0] = 1;
 
     Point src, dest;
     src.x = 0;
@@ -296,7 +304,7 @@ void graph::BFSearch() {
         for (int y = 0; y < maze.columns; y++) {
             queueNode m;
             Point p;
-            m.dist = 1;
+            m.dist = x + y;
             p.x = y;
             p.y = x;
             m.pt = p;
@@ -308,10 +316,11 @@ void graph::BFSearch() {
 
     // check source and destination cell
     // of the matrix have value 1
-    //if (!maze.gridMatrix[src.x][src.y] || !maze.gridMatrix[dest.x][dest.y])
-    //    cout << -3;
+   if (!maze.gridMatrix[src.x][src.y] || !maze.gridMatrix[dest.x][dest.y]) {
+       cout << -3;
+   }
 
-    bool visited[ROW][COL];
+    bool visited[maze.rows][maze.columns];
     memset(visited, false, sizeof visited);
 
     // Mark the source cell as visited
@@ -320,18 +329,21 @@ void graph::BFSearch() {
      //Distance of source cell is 0
     queueNode s = {src, 0};
     q.push(s);  // Enqueue source cell
+    Point visitedCells[maze.rows + maze.columns];
+
+    int arrayIDK[0][0];
+    int distance = 0;
 
     // Do a BFS starting from source cell
     while (q.size() != 0)
     {
         queueNode curr = q.front();
         Point pt = curr.pt;
-        //cout << curr.dist << ", " << endl;
 
         // If we have reached the destination cell,
         // we are done
         if (pt.x == dest.x && pt.y == dest.y)
-            cout << "Dist: " << curr.dist;
+            cout << curr.dist << endl;
 
         // Otherwise dequeue the front
         // cell in the queue
@@ -345,53 +357,48 @@ void graph::BFSearch() {
 
             // if adjacent cell is valid, has path and
             // not visited yet, enqueue it.
-            if (isValid(row, col) && maze.gridMatrix[row][col] &&
+            if (isValid(maze, row, col) && maze.gridMatrix[row][col] &&
                 !visited[row][col])
             {
                 // mark cell as visited and enqueue it
                 visited[row][col] = true;
+                visitedCells[i] = pt;
                 queueNode Adjcell = { {row, col},
                                       curr.dist + 1 };
                 q.push(Adjcell);
                 cout << "Dist " << curr.dist << endl;
             }
         }
+        distance = curr.dist;
     }
 
-  //  for (int i = 0; i < q.size(); i++) {
-   //     queueNode n = q.front();
-   //     int nDist = n.dist;
-   //     cout << nDist << ", ";
-   //     q.pop();
-   //     i++;
-   // }
+    for(int i = 0; i < maze.gridMatrix.rows(); i++) {
+        for(int j = 0; j < maze.gridMatrix.cols(); j++) {
+                cout << maze.gridMatrix[i][j];
+        }
+    }
 
-    // Return -1 if destination cannot be reached
-    cout << -1;
+    //Displays the output of the BFS program.
+    for(int i=maze.amtNodes-1;i<maze.amtNodes;i++) {
+        for (int j = maze.amtNodes - 1; j < maze.amtNodes; j++) {
+            if (i != 0) {
+                cout<<"\nDistance of node "<<i<< " = " << distance << endl;
+                // cout<<"\nPath = "<<i;
 
-    //Displays the output of the dijsksjsk program.
-    int j;
+                    //j = arrayIDK[i][j];
+                    //cout<<"<-"<<j;
+                    int z = 1;
 
-    for(int i=maze.amtNodes-1;i<maze.amtNodes;i++){
-        if(i!=0) {
-            cout<<"\nDistance of node "<<i<< " = " << distanceGrid[0][i];
-            cout<<"\nPath = "<<i;
-            j=i;
-            do {
-                j=predGrid[0][j];
-                cout<<"<-"<<j;
-
-                //If a node in the gridMatrix is in the dijkjkj program, assign is a colored block value (char#254u)
-                for(int x = 0; x < maze.rows; x++){
-                    for(int y = 0; y < maze.columns; y++) {
-                        if(maze.gridMatrix[x][y] == j)
-                            maze.gridMatrix[x][y] = 254u;
-                        if(y == maze.columns-1 && x == maze.rows-1)
-                            maze.gridMatrix[x][y] = 254u;
+                    //If a node in the gridMatrix is in the BFS program, assign is a colored block value (char#254u)
+                    for (int x = 0; x < maze.rows; x++) {
+                        for (int y = 0; y < maze.columns; y++) {
+                            if (arrayIDK[x][y] == 1)
+                                maze.gridMatrix[x][y] = 254u;
+                            if (y == maze.columns - 1 && x == maze.rows - 1)
+                                maze.gridMatrix[x][y] = 254u;
+                        }
                     }
-                }
-
-            }while(j!=0);
+            }
         }
     }
 
@@ -416,4 +423,15 @@ void graph::BFSearch() {
         }
         cout << endl;
     }
+
+  //  for (int i = 0; i < q.size(); i++) {
+   //     queueNode n = q.front();
+   //     int nDist = n.dist;
+   //     cout << nDist << ", ";
+   //     q.pop();
+   //     i++;
+   // }
+
+    // Return -1 if destination cannot be reached
+    cout << -1;
 }
