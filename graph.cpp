@@ -233,10 +233,10 @@ void graph::bfsMain()
     int source = 0, dest = amtNodes-1;
     printShortestDistance(adj, source, dest, amtNodes);
 
-    // distance from source is in distance array
-    cout << endl << "Shortest path length is : " << dist2Grid[0][dest];
+    // Outputs shortest distance from source
+    cout << endl << "Length of shortest path is: " << dist2Grid[0][dest];
 
-    // printing path from source to destination
+    // Outputs path from source to destination
     cout << "\nPath is: ";
     for (int i = path.size() - 1; i >= 0; i--) {
         cout << path[i] << " ";
@@ -274,32 +274,27 @@ void graph::bfsMain()
 
 }
 
-// utility function to form edge between two vertices
-// source and dest
+// Function to form edge between the source and dest. vertices
 void graph::add_edge(vector<int> adj[], int src, int dest)
 {
     adj[src].push_back(dest);
     adj[dest].push_back(src);
 }
 
-// a modified version of BFS that stores predecessor
-// of each vertex in array p
-// and its distance from source in array d
+// a version of BFS that stores predecessor of each vertex in array p
+// and its distance from source in an array
 bool graph::BFS(vector<int> adj[], int src, int dest, int v)
 {
-    // a queue to maintain queue of vertices whose
-    // adjacency list is to be scanned as per normal
-    // DFS algorithm
+    // a queue to maintain queue of vertices whose adjacency list is to be scanned as per normal
+    // BFS algorithm
     list<int> queue;
 
-    // boolean array visited[] which stores the
-    // information whether ith vertex is reached
+    // boolean array visited[] which stores the of information whether ith vertex is reached
     // at least once in the Breadth first search
     bool visited[v];
 
-    // initially all vertices are unvisited
-    // so v[i] for all i is false
-    // and as no path is yet constructed
+    // initially all vertices are unvisited, so v[i] for all i is false.
+    // also, no path is yet constructed
     // dist[i] for all i set to infinity
     for (int i = 0; i < v; i++) {
         visited[i] = false;
@@ -307,9 +302,9 @@ bool graph::BFS(vector<int> adj[], int src, int dest, int v)
         pred2Grid[0][i] = -1;
     }
 
-    // now source is first to be visited and
-    // distance from source to itself should be 0
+    // now source is first to be visited
     visited[src] = true;
+    // distance from source to itself should be 0
     dist2Grid[0][src] = 0;
     queue.push_back(src);
 
@@ -335,15 +330,12 @@ bool graph::BFS(vector<int> adj[], int src, int dest, int v)
     return false;
 }
 
-// utility function to print the shortest distance
-// between source vertex and destination vertex
+// function to print the shortest distance between source vertex and destination vertex
 void graph::printShortestDistance(vector<int> adj[], int s, int dest, int v)
 {
     // predecessor[i] array stores predecessor of
-    // i and distance array stores distance of i
-    // from s
+    // i and distance array stores distance of i from s
     //int pred[v], dist[v];
-
     pred2Grid.resize(1,amtNodes);
     dist2Grid.resize(1,amtNodes);
 
@@ -354,14 +346,10 @@ void graph::printShortestDistance(vector<int> adj[], int s, int dest, int v)
     }
 
     // vector path stores the shortest path
-
     int crawl = dest;
     path.push_back(crawl);
     while (pred2Grid[0][crawl] != -1) {
         path.push_back(pred2Grid[0][crawl]);
         crawl = pred2Grid[0][crawl];
     }
-
-
-
 }

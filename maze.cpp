@@ -22,9 +22,7 @@ void grid::readGrid(){
 
     string fileEntered;
     cout << "Type in the file name to read in: " << endl;
-    //getline(cin, fileEntered);
-
-    fileEntered = "maze1.txt";
+    getline(cin, fileEntered);
 
     file.open(fileEntered);
     if (!file.is_open()){
@@ -47,9 +45,6 @@ void grid::readGrid(){
             gridMatrix[x][y] = matrixInput[y];
         }
     }
-
-    //Stores the matrix in the 2D Array called gridMatrix.
-
 }
 
 void grid::outputGrid()
