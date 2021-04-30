@@ -243,10 +243,48 @@ void graph::bfsMain()
         }
     }
 
-
-
     int source = 0, dest = amtNodes-1;
     printShortestDistance(adj, source, dest, v);
+
+    // distance from source is in distance array
+    cout << endl << "Shortest path length is : " << dist2Grid[0][dest];
+
+    // printing path from source to destination
+    cout << "\nPath is: ";
+    for (int i = path.size() - 1; i >= 0; i--) {
+        cout << path[i] << " ";
+        //If a node in the gridMatrix is in the algorithm, assign is a colored block value (char#254u)
+        for (int x = 0; x < maze.rows; x++) {
+            for (int y = 0; y < maze.columns; y++) {
+                if (maze.gridMatrix[x][y] == path[i])
+                    maze.gridMatrix[x][y] = 254u;
+                if (y == maze.columns - 1 && x == maze.rows - 1)
+                    maze.gridMatrix[x][y] = 254u;
+            }
+        }
+    }
+
+    //Reverts all char#255 back to X so it looks like the original graph.
+    for(int x = 0; x < maze.rows; x++){
+        for(int y = 0; y < maze.columns; y++) {
+            if(maze.gridMatrix[x][y] == 255){
+                maze.gridMatrix[x][y] = 'X';
+            }
+            //If a space is not a wall but also not in the highlighted path, make it blank.
+            if(maze.gridMatrix[x][y] != 'X' && maze.gridMatrix[x][y] != 254u)
+                maze.gridMatrix[x][y] = ' ';
+        }
+    }
+
+    //Finally we output the completed maze!
+    cout << endl << endl;
+    for(int x = 0; x < maze.rows; x++){
+        for(int y = 0; y < maze.columns; y++) {
+            cout << maze.gridMatrix[x][y] << " ";
+        }
+        cout << endl;
+    }
+
 }
 
 // utility function to form edge between two vertices
@@ -260,8 +298,7 @@ void graph::add_edge(vector<int> adj[], int src, int dest)
 // a modified version of BFS that stores predecessor
 // of each vertex in array p
 // and its distance from source in array d
-bool graph::BFS(vector<int> adj[], int src, int dest, int v,
-                int pred[], int dist[])
+bool graph::BFS(vector<int> adj[], int src, int dest, int v)
 {
     // a queue to maintain queue of vertices whose
     // adjacency list is to be scanned as per normal
@@ -279,14 +316,14 @@ bool graph::BFS(vector<int> adj[], int src, int dest, int v,
     // dist[i] for all i set to infinity
     for (int i = 0; i < v; i++) {
         visited[i] = false;
-        dist[i] = INT_MAX;
-        pred[i] = -1;
+        dist2Grid[0][i] = INT_MAX;
+        pred2Grid[0][i] = -1;
     }
 
     // now source is first to be visited and
     // distance from source to itself should be 0
     visited[src] = true;
-    dist[src] = 0;
+    dist2Grid[0][src] = 0;
     queue.push_back(src);
 
     // standard BFS algorithm
@@ -296,8 +333,8 @@ bool graph::BFS(vector<int> adj[], int src, int dest, int v,
         for (int i = 0; i < adj[u].size(); i++) {
             if (visited[adj[u][i]] == false) {
                 visited[adj[u][i]] = true;
-                dist[adj[u][i]] = dist[u] + 1;
-                pred[adj[u][i]] = u;
+                dist2Grid[0][adj[u][i]] = dist2Grid[0][u] + 1;
+                pred2Grid[0][adj[u][i]] = u;
                 queue.push_back(adj[u][i]);
 
                 // We stop BFS when we find
@@ -318,31 +355,28 @@ void graph::printShortestDistance(vector<int> adj[], int s, int dest, int v)
     // predecessor[i] array stores predecessor of
     // i and distance array stores distance of i
     // from s
-    int pred[v], dist[v];
+    //int pred[v], dist[v];
 
-    if (BFS(adj, s, dest, v, pred, dist) == false) {
+    pred2Grid.resize(1,amtNodes);
+    dist2Grid.resize(1,amtNodes);
+
+    if (BFS(adj, s, dest, v) == false) {
         cout << "Given source and destination"
              << " are not connected";
         return;
     }
 
     // vector path stores the shortest path
-    vector<int> path;
+
     int crawl = dest;
     path.push_back(crawl);
-    while (pred[crawl] != -1) {
-        path.push_back(pred[crawl]);
-        crawl = pred[crawl];
+    while (pred2Grid[0][crawl] != -1) {
+        path.push_back(pred2Grid[0][crawl]);
+        crawl = pred2Grid[0][crawl];
     }
 
-    // distance from source is in distance array
-    cout << "Shortest path length is : "
-         << dist[dest];
 
-    // printing path from source to destination
-    cout << "\nPath is::\n";
-    for (int i = path.size() - 1; i >= 0; i--)
-        cout << path[i] << " ";
+
 }
 
 

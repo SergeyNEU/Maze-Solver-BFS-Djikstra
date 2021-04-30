@@ -35,12 +35,15 @@ public:
     matrix<int> distanceGrid;
     matrix<int> costGrid;
     matrix<int> visitedGrid;
+    matrix<int> pred2Grid;
+    matrix<int> dist2Grid;
+    vector<int> path;
 
     void dijkstraMain();
     void dijkstra();
     void BFSearch();
     void printShortestDistance(vector<int> adj[], int s, int dest, int v);
-    bool BFS(vector<int> adj[], int src, int dest, int v, int pred[], int dist[]);
+    bool BFS(vector<int> adj[], int src, int dest, int v);
     void add_edge(vector<int> adj[], int src, int dest);
     void bfsMain();
 };
