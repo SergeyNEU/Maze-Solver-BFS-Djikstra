@@ -177,6 +177,189 @@ void graph::dijkstra() {
     }
 }
 
+// Driver program to test above functions
+void graph::bfsMain()
+{
+
+
+    grid maze;
+
+    //Outputs the current grid, unchanged.
+    maze.outputGrid();
+
+    //We change the walls 'X' to be char #255. This is because 'X' is actually char #88, and when we are assigning node
+    //values in Maze2 and Maze3, node values exceed 88 (go to like 192). So when we labeling node #88, it labeled it as
+    //'X' - which in turn made our program think it was a wall not an actual node
+    // [P.S. matrix is <unsigned char> type to support this!]
+    maze.reformatGrid();
+
+    //Now that we changed all walls to char#255, we can label each node 0-254
+    maze.LabelNodes();
+
+    amtNodes = maze.amtNodes;
+
+    // no. of vertices
+    int v = amtNodes;
+
+    // array of vectors is used to store the graph
+    // in the form of an adjacency list
+    vector<int> adj[v];
+
+    // Creating graph given in the above diagram.
+    // add_edge function takes adjacency list, source
+    // and destination vertex as argument and forms
+    // an edge between them.
+
+    int xplus1;
+    int xminus1;
+    int yplus1;
+    int yminus1;
+
+
+
+    //Checks for adjacency nodes.
+    for(int x = 0; x < maze.rows; x++){
+        for(int y = 0; y < maze.columns; y++){
+            if(maze.gridMatrix[x][y] != 255){
+                xplus1 = x+1;
+                xminus1 = x-1;
+                yplus1 = y+1;
+                yminus1 = y-1;
+
+                if(xplus1 >= maze.rows)
+                    xplus1 = 0;
+                if(xminus1 < 0)
+                    xminus1 = 0;
+                if(yplus1 >= maze.columns)
+                    yplus1 = 0;
+                if(yminus1 < 0)
+                    yminus1 = 0;
+
+                if(maze.gridMatrix[xplus1][y] != 255 && (maze.gridMatrix[xplus1][y] != maze.gridMatrix[x][y])){
+                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xplus1][y]);
+                }
+
+                if((int)maze.gridMatrix[x][yplus1] != 255 && (maze.gridMatrix[x][yplus1] != maze.gridMatrix[x][y])){
+                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yplus1]);
+                }
+                if(maze.gridMatrix[xminus1][y] != 255 && (maze.gridMatrix[xminus1][y] != maze.gridMatrix[x][y])){
+                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xminus1][y]);
+                }
+                if(maze.gridMatrix[x][yminus1] != 255 && (maze.gridMatrix[x][yminus1] != maze.gridMatrix[x][y])){
+                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yminus1]);
+                }
+            }
+        }
+    }
+
+
+
+    int source = 0, dest = amtNodes-1;
+    printShortestDistance(adj, source, dest, v);
+}
+
+// utility function to form edge between two vertices
+// source and dest
+void graph::add_edge(vector<int> adj[], int src, int dest)
+{
+    adj[src].push_back(dest);
+    adj[dest].push_back(src);
+}
+
+// a modified version of BFS that stores predecessor
+// of each vertex in array p
+// and its distance from source in array d
+bool graph::BFS(vector<int> adj[], int src, int dest, int v,
+                int pred[], int dist[])
+{
+    // a queue to maintain queue of vertices whose
+    // adjacency list is to be scanned as per normal
+    // DFS algorithm
+    list<int> queue;
+
+    // boolean array visited[] which stores the
+    // information whether ith vertex is reached
+    // at least once in the Breadth first search
+    bool visited[v];
+
+    // initially all vertices are unvisited
+    // so v[i] for all i is false
+    // and as no path is yet constructed
+    // dist[i] for all i set to infinity
+    for (int i = 0; i < v; i++) {
+        visited[i] = false;
+        dist[i] = INT_MAX;
+        pred[i] = -1;
+    }
+
+    // now source is first to be visited and
+    // distance from source to itself should be 0
+    visited[src] = true;
+    dist[src] = 0;
+    queue.push_back(src);
+
+    // standard BFS algorithm
+    while (!queue.empty()) {
+        int u = queue.front();
+        queue.pop_front();
+        for (int i = 0; i < adj[u].size(); i++) {
+            if (visited[adj[u][i]] == false) {
+                visited[adj[u][i]] = true;
+                dist[adj[u][i]] = dist[u] + 1;
+                pred[adj[u][i]] = u;
+                queue.push_back(adj[u][i]);
+
+                // We stop BFS when we find
+                // destination.
+                if (adj[u][i] == dest)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+// utility function to print the shortest distance
+// between source vertex and destination vertex
+void graph::printShortestDistance(vector<int> adj[], int s, int dest, int v)
+{
+    // predecessor[i] array stores predecessor of
+    // i and distance array stores distance of i
+    // from s
+    int pred[v], dist[v];
+
+    if (BFS(adj, s, dest, v, pred, dist) == false) {
+        cout << "Given source and destination"
+             << " are not connected";
+        return;
+    }
+
+    // vector path stores the shortest path
+    vector<int> path;
+    int crawl = dest;
+    path.push_back(crawl);
+    while (pred[crawl] != -1) {
+        path.push_back(pred[crawl]);
+        crawl = pred[crawl];
+    }
+
+    // distance from source is in distance array
+    cout << "Shortest path length is : "
+         << dist[dest];
+
+    // printing path from source to destination
+    cout << "\nPath is::\n";
+    for (int i = path.size() - 1; i >= 0; i--)
+        cout << path[i] << " ";
+}
+
+
+
+
+
+/*
+
 // A Data Structure for queue used in BFS
 struct queueNode
 {
@@ -286,7 +469,7 @@ void graph::BFSearch() {
         predGrid[0][x] = 0;
         visitedGrid[0][x] = 0;
     }
-    */
+
 
     distanceGrid[0][0] = 0;
     visitedGrid[0][0] = 1;
@@ -450,7 +633,7 @@ void graph::BFSearch() {
 
 
 //------------------CHEESE--------------------------------------------
-/*
+
 
     //Now that the graph has been prepared and the adjacency matrix has been fully created, run the algorithm.
     dijkstra();
@@ -500,5 +683,6 @@ void graph::BFSearch() {
         }
         cout << endl;
     }
-    */
+
 }
+*/

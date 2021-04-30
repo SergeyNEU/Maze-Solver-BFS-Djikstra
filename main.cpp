@@ -28,7 +28,7 @@ int main()
     graph maze; // Initiates maze and asks for file as well!
 
     if(optionEntered == "1")
-        maze.BFSearch();
+        maze.bfsMain();
     else if (optionEntered == "2")
         maze.dijkstraMain();
 
