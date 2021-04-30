@@ -226,26 +226,17 @@ void graph::bfsMain()
                 yplus1 = y+1;
                 yminus1 = y-1;
 
-                if(xplus1 >= maze.rows)
-                    xplus1 = 0;
-                if(xminus1 < 0)
-                    xminus1 = 0;
-                if(yplus1 >= maze.columns)
-                    yplus1 = 0;
-                if(yminus1 < 0)
-                    yminus1 = 0;
-
-                if(maze.gridMatrix[xplus1][y] != 255 && (maze.gridMatrix[xplus1][y] != maze.gridMatrix[x][y])){
+                if(!(xplus1 == maze.rows) && maze.gridMatrix[xplus1][y] != 255 && (maze.gridMatrix[xplus1][y] != maze.gridMatrix[x][y])){
                     add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xplus1][y]);
                 }
 
-                if((int)maze.gridMatrix[x][yplus1] != 255 && (maze.gridMatrix[x][yplus1] != maze.gridMatrix[x][y])){
+                if(!(yplus1 == maze.columns) && maze.gridMatrix[x][yplus1] != 255 && (maze.gridMatrix[x][yplus1] != maze.gridMatrix[x][y])){
                     add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yplus1]);
                 }
-                if(maze.gridMatrix[xminus1][y] != 255 && (maze.gridMatrix[xminus1][y] != maze.gridMatrix[x][y])){
+                if(!(xminus1 == -1) && maze.gridMatrix[xminus1][y] != 255 && (maze.gridMatrix[xminus1][y] != maze.gridMatrix[x][y])){
                     add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xminus1][y]);
                 }
-                if(maze.gridMatrix[x][yminus1] != 255 && (maze.gridMatrix[x][yminus1] != maze.gridMatrix[x][y])){
+                if(!(yminus1 == -1) && maze.gridMatrix[x][yminus1] != 255 && (maze.gridMatrix[x][yminus1] != maze.gridMatrix[x][y])){
                     add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yminus1]);
                 }
             }
