@@ -299,6 +299,7 @@ void graph::BFSearch() {
 
     // Create a queue for BFS
     queue<queueNode> q;
+    queue<queueNode> q2;
 
     for(int x = 0; x < maze.rows; x++) {
         for (int y = 0; y < maze.columns; y++) {
@@ -309,7 +310,9 @@ void graph::BFSearch() {
             p.y = x;
             m.pt = p;
             q.push(m);
+            q2.push(m);
             q.front();
+            q2.front();
             cout << m.pt.x << ", " << m.pt.y << ", " << m.dist << endl;
         }
     }
@@ -329,9 +332,10 @@ void graph::BFSearch() {
      //Distance of source cell is 0
     queueNode s = {src, 0};
     q.push(s);  // Enqueue source cell
+    q2.push(s);
     Point visitedCells[maze.rows + maze.columns];
 
-    int arrayIDK[0][0];
+    queueNode arrayIDK[maze.rows][maze.columns];
     int distance = 0;
 
     // Do a BFS starting from source cell
@@ -365,12 +369,15 @@ void graph::BFSearch() {
                 visitedCells[i] = pt;
                 queueNode Adjcell = { {row, col},
                                       curr.dist + 1 };
+                arrayIDK[row][col] = Adjcell;
                 q.push(Adjcell);
                 cout << "Dist " << curr.dist << endl;
             }
+
         }
         distance = curr.dist;
     }
+
 
     for(int i = 0; i < maze.gridMatrix.rows(); i++) {
         for(int j = 0; j < maze.gridMatrix.cols(); j++) {
@@ -378,22 +385,28 @@ void graph::BFSearch() {
         }
     }
 
+    cout << endl << "Sizes: " << endl;
+    cout<< q.size()<<endl;
+    cout<< q2.size()<<endl;
+
     //Displays the output of the BFS program.
     for(int i=maze.amtNodes-1;i<maze.amtNodes;i++) {
         for (int j = maze.amtNodes - 1; j < maze.amtNodes; j++) {
             if (i != 0) {
                 cout<<"\nDistance of node "<<i<< " = " << distance << endl;
+
                 // cout<<"\nPath = "<<i;
 
-                    //j = arrayIDK[i][j];
                     //cout<<"<-"<<j;
-                    int z = 1;
 
                     //If a node in the gridMatrix is in the BFS program, assign is a colored block value (char#254u)
                     for (int x = 0; x < maze.rows; x++) {
                         for (int y = 0; y < maze.columns; y++) {
-                            if (arrayIDK[x][y] == 1)
-                                maze.gridMatrix[x][y] = 254u;
+                            maze.gridMatrix[0][0] = 254u;
+                            maze.gridMatrix[i][j] = 254u;
+                            if (arrayIDK[x][y].dist == maze.gridMatrix[x][y]) {
+                                //maze.gridMatrix[x][y] = 254u;
+                            }
                             if (y == maze.columns - 1 && x == maze.rows - 1)
                                 maze.gridMatrix[x][y] = 254u;
                         }
@@ -434,4 +447,58 @@ void graph::BFSearch() {
 
     // Return -1 if destination cannot be reached
     cout << -1;
+
+
+//------------------CHEESE--------------------------------------------
+/*
+
+    //Now that the graph has been prepared and the adjacency matrix has been fully created, run the algorithm.
+    dijkstra();
+
+    //Displays the output of the algorithm
+    int k, j;
+    for(k = maze.amtNodes-1; k < maze.amtNodes; k++){
+        if(k != 0) {
+            j = k;
+            //cout << endl << "Distance of node " << k << " = " << distanceGrid[0][k];
+            //cout << endl << "Path = "<< k;
+            do {
+                j = predGrid[0][j];
+                //cout << "<-" << j;
+
+                //If a node in the gridMatrix is in the algorithm, assign is a colored block value (char#254u)
+                for(int x = 0; x < maze.rows; x++){
+                    for(int y = 0; y < maze.columns; y++) {
+                        if(maze.gridMatrix[x][y] == j)
+                            maze.gridMatrix[x][y] = 254u;
+                        if(y == maze.columns-1 && x == maze.rows-1)
+                            maze.gridMatrix[x][y] = 254u;
+                    }
+                }
+
+            } while (j!=0);
+        }
+    }
+
+    //Reverts all char#255 back to X so it looks like the original graph.
+    for(int x = 0; x < maze.rows; x++){
+        for(int y = 0; y < maze.columns; y++) {
+            if(maze.gridMatrix[x][y] == 255){
+                maze.gridMatrix[x][y] = 'X';
+            }
+            //If a space is not a wall but also not in the highlighted path, make it blank.
+            if(maze.gridMatrix[x][y] != 'X' && maze.gridMatrix[x][y] != 254u)
+                maze.gridMatrix[x][y] = ' ';
+        }
+    }
+
+    //Finally we output the completed maze!
+    cout << endl << endl;
+    for(int x = 0; x < maze.rows; x++){
+        for(int y = 0; y < maze.columns; y++) {
+            cout << maze.gridMatrix[x][y] << " ";
+        }
+        cout << endl;
+    }
+    */
 }
