@@ -214,17 +214,17 @@ void graph::bfsMain()
                 yminus1 = y-1;
 
                 if(!(xplus1 == maze.rows) && maze.gridMatrix[xplus1][y] != 255 && (maze.gridMatrix[xplus1][y] != maze.gridMatrix[x][y])){
-                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xplus1][y]);
+                    addEdge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xplus1][y]);
                 }
 
                 if(!(yplus1 == maze.columns) && maze.gridMatrix[x][yplus1] != 255 && (maze.gridMatrix[x][yplus1] != maze.gridMatrix[x][y])){
-                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yplus1]);
+                    addEdge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yplus1]);
                 }
                 if(!(xminus1 == -1) && maze.gridMatrix[xminus1][y] != 255 && (maze.gridMatrix[xminus1][y] != maze.gridMatrix[x][y])){
-                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xminus1][y]);
+                    addEdge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[xminus1][y]);
                 }
                 if(!(yminus1 == -1) && maze.gridMatrix[x][yminus1] != 255 && (maze.gridMatrix[x][yminus1] != maze.gridMatrix[x][y])){
-                    add_edge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yminus1]);
+                    addEdge(adj, (int)maze.gridMatrix[x][y], (int)maze.gridMatrix[x][yminus1]);
                 }
             }
         }
@@ -237,9 +237,9 @@ void graph::bfsMain()
     cout << endl << "Length of shortest path is: " << dist2Grid[0][dest];
 
     // Outputs path from source to destination
-    cout << "\nPath is: ";
+    cout << endl << "Path is: ";
     for (int i = path.size() - 1; i >= 0; i--) {
-        cout << path[i] << " ";
+        cout << path[i] << "<-";
         //If a node in the gridMatrix is in the algorithm, assign is a colored block value (char#254u)
         for (int x = 0; x < maze.rows; x++) {
             for (int y = 0; y < maze.columns; y++) {
@@ -275,7 +275,7 @@ void graph::bfsMain()
 }
 
 // Function to form edge between the source and dest. vertices
-void graph::add_edge(vector<int> adj[], int src, int dest)
+void graph::addEdge(vector<int> adj[], int src, int dest)
 {
     adj[src].push_back(dest);
     adj[dest].push_back(src);
@@ -283,18 +283,16 @@ void graph::add_edge(vector<int> adj[], int src, int dest)
 
 // a version of BFS that stores predecessor of each vertex in array p
 // and its distance from source in an array
-bool graph::BFS(vector<int> adj[], int src, int dest, int v)
+bool graph::breadthFirstSearch(vector<int> adj[], int src, int dest, int v)
 {
-    // a queue to maintain queue of vertices whose adjacency list is to be scanned as per normal
-    // BFS algorithm
+    // a queue to maintain queue of vertices whose adjacency list is to be scanned as per normal BFS algorithm
     list<int> queue;
 
     // boolean array visited[] which stores the of information whether ith vertex is reached
     // at least once in the Breadth first search
     bool visited[v];
 
-    // initially all vertices are unvisited, so v[i] for all i is false.
-    // also, no path is yet constructed
+    // initially all vertices are unvisited, so v[i] for all i is false. also, no path is yet constructed
     // dist[i] for all i set to infinity
     for (int i = 0; i < v; i++) {
         visited[i] = false;
@@ -333,23 +331,21 @@ bool graph::BFS(vector<int> adj[], int src, int dest, int v)
 // function to print the shortest distance between source vertex and destination vertex
 void graph::printShortestDistance(vector<int> adj[], int s, int dest, int v)
 {
-    // predecessor[i] array stores predecessor of
-    // i and distance array stores distance of i from s
-    //int pred[v], dist[v];
+    // predecessor[i] array stores predecessor of i and distance array stores distance of i from s int pred[v], dist[v];
     pred2Grid.resize(1,amtNodes);
     dist2Grid.resize(1,amtNodes);
 
-    if (BFS(adj, s, dest, v) == false) {
-        cout << "Given source and destination"
-             << " are not connected";
+    if (breadthFirstSearch(adj, s, dest, v) == false) {
+        cout << "Source and destination cannot be connected.";
         return;
     }
 
     // vector path stores the shortest path
-    int crawl = dest;
-    path.push_back(crawl);
-    while (pred2Grid[0][crawl] != -1) {
-        path.push_back(pred2Grid[0][crawl]);
-        crawl = pred2Grid[0][crawl];
+    int shortPath = dest;
+    path.push_back(shortPath);
+
+    while (pred2Grid[0][shortPath] != -1) {
+        path.push_back(pred2Grid[0][shortPath]);
+        shortPath = pred2Grid[0][shortPath];
     }
 }

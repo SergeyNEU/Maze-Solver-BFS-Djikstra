@@ -36,8 +36,8 @@ public:
     void dijkstraMain();
     void dijkstra();
     void printShortestDistance(vector<int> adj[], int s, int dest, int v);
-    bool BFS(vector<int> adj[], int src, int dest, int v);
-    void add_edge(vector<int> adj[], int src, int dest);
+    bool breadthFirstSearch(vector<int> adj[], int src, int dest, int v);
+    void addEdge(vector<int> adj[], int src, int dest);
     void bfsMain();
 };
 #endif //GRAPH_H
